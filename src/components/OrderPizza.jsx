@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function OrderPizza() {
+export default function Footer() {
   return (
     <>
    <div className='FooterTotal flex flex-col-reverse bg-[#1A1A1A]'>
