@@ -1,5 +1,5 @@
 import React from 'react';
-import CheckBox from './CheckBox'; // Adjust the import path if necessary
+import CheckBox from './CheckBox'; 
 import '../index.css';
 
 const OrderOption = ({ handleCheck }) => {
