@@ -24,7 +24,7 @@ const CheckBox = ({ label, handleCheck }) => {
 
 const OrderOption = ({ handleCheck }) => {
   return (
-    <div className='flex flex-col items-center'>
+    <div>
       <div className='Frame10'>
         <p>Ek Malzemeler</p>
         <p>En Fazla 10 malzeme seçebilirsiniz. 5₺</p>
