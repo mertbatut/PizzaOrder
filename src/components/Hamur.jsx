@@ -1,10 +1,17 @@
 import React, { useState } from 'react';
 
-export default function Hamur() {
+export default function Hamur({ onSizeChange, onDoughChange }) {
     const [selectedSize, setSelectedSize] = useState(null);
+    const [selectedDough, setSelectedDough] = useState('');
 
     const handleSizeClick = (size) => {
         setSelectedSize(size);
+        onSizeChange(size);
+    };
+
+    const handleDoughChange = (e) => {
+        setSelectedDough(e.target.value);
+        onDoughChange(e.target.value);
     };
 
     return (
@@ -29,14 +36,16 @@ export default function Hamur() {
                 </div>
                 <div className='KalinlikDiv'>
                     <form className="max-w-sm mx-auto">
-                        <label htmlFor="countries" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                        <label htmlFor="dough" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                             Hamur Seç
                         </label>
                         <select
-                            id="countries"
+                            id="dough"
+                            value={selectedDough}
+                            onChange={handleDoughChange}
                             className="bg-[#FAF7F2] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         >
-                            <option selected>--Hamur Kalınlığı Seç--</option>
+                            <option value="">--Hamur Kalınlığı Seç--</option>
                             <option value="ince kenar">İnce Kenar</option>
                             <option value="yumuşak kenar">Yumuşak Kenar</option>
                             <option value="kalin kenar">Kalın Kenar</option>

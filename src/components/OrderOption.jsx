@@ -5,7 +5,7 @@ import '../index.css';
 import { toast } from 'react-toastify';
 import { HiCheck } from 'react-icons/hi';
 
-const OrderOption = () => {
+const OrderOption = ({ selectedSize, selectedDough }) => {
   const [selectedItems, setSelectedItems] = useState([]);
   const checkBoxRefs = useRef([]);
   const orderButtonRef = useRef(null);
@@ -21,8 +21,15 @@ const OrderOption = () => {
   };
 
   const handleOrder = (total) => {
+    if (!selectedSize || !selectedDough) {
+      toast.error('Lütfen bir boyut ve hamur tipi seçin.');
+      return;
+    }
+
     const numberedItems = selectedItems.map((item, index) => `Seçim ${index + 1}: ${item}`);
     console.log("Seçilen Malzemeler:", numberedItems);
+    console.log("Seçilen Boyut:", selectedSize);
+    console.log("Seçilen Hamur Tipi:", selectedDough);
     console.log("Ödenecek Tutar:", total + "₺");
 
     toast(
@@ -30,7 +37,7 @@ const OrderOption = () => {
         <div className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-green-100 text-green-500 dark:bg-green-800 dark:text-green-200">
           <HiCheck className="h-5 w-5" />
         </div>
-        <div className="ml-3 text-sm font-normal">Sipariş başarıyla verildi.</div>
+        <div className="ml-3 text-sm font-normal">Siparişiniz Başarıyla Oluşturuldu.</div>
       </div>,
       {
         className: 'bg-green-500 text-white',
