@@ -1,7 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, forwardRef, useImperativeHandle } from 'react';
 
-const OrderButton = ({ totalPrice, handleOrder }) => {
+const OrderButton = forwardRef(({ totalPrice, handleOrder }, ref) => {
   const [count, setCount] = useState(0);
+
+  useImperativeHandle(ref, () => ({
+    reset() {
+      setCount(0);
+    }
+  }));
 
   const increment = () => {
     setCount(count + 1);
@@ -20,7 +26,7 @@ const OrderButton = ({ totalPrice, handleOrder }) => {
         <div className='TotalButon'>
           <button className='w-[47px] h-[47px] bg-[#FAF7F2]' onClick={decrement}>-</button>
           <input
-            className='w-[47px] h-[47px] bg-[#FAF7F2] pl-4'
+            className='w-[50px] h-[47px] bg-[#FAF7F2] '
             type="number"
             value={count}
             readOnly
@@ -49,6 +55,6 @@ const OrderButton = ({ totalPrice, handleOrder }) => {
       </div>
     </div>
   );
-};
+});
 
 export default OrderButton;

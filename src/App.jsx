@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import OrderOption from './components/OrderOption';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const [totalPrice, setTotalPrice] = useState(0);
@@ -12,7 +13,7 @@ function App() {
   return (
     <div>
       <OrderOption handleCheck={handleCheck} />
-      
+      <ToastContainer autoClose={2000} />
     </div>
   );
 }

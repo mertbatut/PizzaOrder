@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { forwardRef, useImperativeHandle, useState } from 'react';
 import '../index.css';
 
-const CheckBox = ({ label, handleCheck }) => {
-  const [checked, setChecked] = React.useState(false);
+const CheckBox = forwardRef(({ label, handleCheck }, ref) => {
+  const [checked, setChecked] = useState(false);
+
+  useImperativeHandle(ref, () => ({
+    reset() {
+      setChecked(false);
+      handleCheck(label, false);
+    }
+  }));
 
   const onChange = () => {
     const newChecked = !checked;
@@ -21,6 +28,6 @@ const CheckBox = ({ label, handleCheck }) => {
       <label onClick={onChange} className="cursor-pointer">{label}</label>
     </div>
   );
-};
+});
 
 export default CheckBox;
