@@ -1,14 +1,24 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useImperativeHandle, forwardRef } from 'react';
 import CheckBox from './CheckBox';
 import OrderButton from './OrderButton';
 import '../index.css';
 import { toast } from 'react-toastify';
 import { HiCheck } from 'react-icons/hi';
 
-const OrderOption = ({ selectedSize, selectedDough }) => {
+const OrderOption = forwardRef(({ selectedSize, selectedDough }, ref) => {
   const [selectedItems, setSelectedItems] = useState([]);
   const checkBoxRefs = useRef([]);
   const orderButtonRef = useRef(null);
+
+  useImperativeHandle(ref, () => ({
+    resetSelections() {
+      setSelectedItems([]);
+      checkBoxRefs.current.forEach(ref => ref.reset());
+      if (orderButtonRef.current) {
+        orderButtonRef.current.reset();
+      }
+    }
+  }));
 
   const handleCheck = (label, isChecked) => {
     let updatedItems;
@@ -37,7 +47,7 @@ const OrderOption = ({ selectedSize, selectedDough }) => {
         <div className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-green-100 text-green-500 dark:bg-green-800 dark:text-green-200">
           <HiCheck className="h-5 w-5" />
         </div>
-        <div className="ml-3 text-sm font-normal">Siparişiniz Başarıyla Oluşturuldu.</div>
+        <div className="ml-3 text-sm font-normal">Sipariş başarıyla verildi.</div>
       </div>,
       {
         className: 'bg-green-500 text-white',
@@ -45,7 +55,7 @@ const OrderOption = ({ selectedSize, selectedDough }) => {
       }
     );
 
-    // Reset all checkboxes and order button after toast is shown
+    // Reset all selections after order is placed
     setSelectedItems([]);
     checkBoxRefs.current.forEach(ref => ref.reset());
     if (orderButtonRef.current) {
@@ -81,6 +91,6 @@ const OrderOption = ({ selectedSize, selectedDough }) => {
       <OrderButton ref={orderButtonRef} totalPrice={totalPrice} handleOrder={handleOrder} />
     </div>
   );
-};
+});
 
 export default OrderOption;

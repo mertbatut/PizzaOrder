@@ -1,8 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useImperativeHandle, forwardRef } from 'react';
 
-export default function Hamur({ onSizeChange, onDoughChange }) {
+const Hamur = forwardRef(({ onSizeChange, onDoughChange }, ref) => {
     const [selectedSize, setSelectedSize] = useState(null);
     const [selectedDough, setSelectedDough] = useState('');
+
+    useImperativeHandle(ref, () => ({
+        resetSelections() {
+            setSelectedSize(null);
+            setSelectedDough('');
+        }
+    }));
 
     const handleSizeClick = (size) => {
         setSelectedSize(size);
@@ -56,4 +63,6 @@ export default function Hamur({ onSizeChange, onDoughChange }) {
             </div>
         </div>
     );
-}
+});
+
+export default Hamur;

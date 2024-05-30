@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import OrderOption from './components/OrderOption';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -8,6 +8,9 @@ function App() {
   const [totalPrice, setTotalPrice] = useState(0);
   const [selectedSize, setSelectedSize] = useState(null);
   const [selectedDough, setSelectedDough] = useState('');
+  
+  const hamurRef = useRef(null);
+  const orderOptionRef = useRef(null);
 
   const handleSizeChange = (size) => {
     setSelectedSize(size);
@@ -17,14 +20,20 @@ function App() {
     setSelectedDough(dough);
   };
 
-  const handleCheck = (checked) => {
-    setTotalPrice(totalPrice + (checked ? 5 : -5));
+  const handleOrderCompletion = () => {
+    if (hamurRef.current) {
+      hamurRef.current.resetSelections();
+    }
+    if (orderOptionRef.current) {
+      orderOptionRef.current.resetSelections();
+    }
+    setTotalPrice(0);
   };
 
   return (
     <div>
-      <Hamur onSizeChange={handleSizeChange} onDoughChange={handleDoughChange} />
-      <OrderOption selectedSize={selectedSize} selectedDough={selectedDough} handleCheck={handleCheck} />
+      <Hamur ref={hamurRef} onSizeChange={handleSizeChange} onDoughChange={handleDoughChange} />
+      <OrderOption ref={orderOptionRef} selectedSize={selectedSize} selectedDough={selectedDough} />
       <ToastContainer autoClose={2000} />
     </div>
   );
