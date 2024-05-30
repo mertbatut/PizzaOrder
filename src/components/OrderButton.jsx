@@ -16,7 +16,7 @@ const OrderButton = ({ totalPrice }) => {
   return (
     <div className='OrderMain'>
       <hr />
-      <div className='OrderButton flex'>
+      <div className='OrderButton flex pl-[47rem]'>
         <div className='TotalButon'>
           <button className='w-[47px] h-[47px] bg-[#FAF7F2]' onClick={decrement}>-</button>
           <input
