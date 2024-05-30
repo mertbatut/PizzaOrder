@@ -1,8 +1,27 @@
-import React from 'react';
-import CheckBox from './CheckBox'; 
+import React, { useState } from 'react';
+import CheckBox from './CheckBox';
+import OrderButton from './OrderButton';
 import '../index.css';
 
-const OrderOption = ({ handleCheck }) => {
+const OrderOption = () => {
+  const [selectedItems, setSelectedItems] = useState([]);
+
+  const handleCheck = (label, isChecked) => {
+    let updatedItems;
+    if (isChecked) {
+      updatedItems = [...selectedItems, label];
+    } else {
+      updatedItems = selectedItems.filter(item => item !== label);
+    }
+    setSelectedItems(updatedItems);
+  };
+
+  const handleOrder = () => {
+    console.log("Seçilen Malzemeler:", selectedItems);
+  };
+
+  const totalPrice = selectedItems.length * 5;
+
   return (
     <div className='flex flex-col items-center'>
       <div className='Frame10 '>
@@ -11,7 +30,7 @@ const OrderOption = ({ handleCheck }) => {
       </div>
       <div className='Frame9 flex gap-40 '>
         <div className='Checkdiv1 flex flex-col gap-4 font-bold text-base text-[#5F5F5F]'>
-          <CheckBox  label="Pepperoni"  handleCheck={handleCheck} />
+          <CheckBox label="Pepperoni" handleCheck={handleCheck} />
           <CheckBox label="Sosis" handleCheck={handleCheck} />
           <CheckBox label="Kanada Jambonu" handleCheck={handleCheck} />
           <CheckBox label="Tavuk Izgara" handleCheck={handleCheck} />
@@ -32,6 +51,7 @@ const OrderOption = ({ handleCheck }) => {
           <CheckBox label="Füme Et" handleCheck={handleCheck} />
         </div>
       </div>
+      <OrderButton totalPrice={totalPrice} handleOrder={handleOrder} />
     </div>
   );
 };

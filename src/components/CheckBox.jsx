@@ -7,7 +7,7 @@ const CheckBox = ({ label, handleCheck }) => {
   const onChange = () => {
     const newChecked = !checked;
     setChecked(newChecked);
-    handleCheck(newChecked);
+    handleCheck(label, newChecked);
   };
 
   return (

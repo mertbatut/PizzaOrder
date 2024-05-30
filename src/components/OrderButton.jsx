@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const OrderButton = ({ totalPrice }) => {
+const OrderButton = ({ totalPrice, handleOrder }) => {
   const [count, setCount] = useState(0);
 
   const increment = () => {
@@ -39,7 +39,12 @@ const OrderButton = ({ totalPrice }) => {
               <p className='font-semibold text-lg text-[#CE2829]'>{total}₺</p>
             </div>
           </div>
-          <button className='w-[386px] h-[62px] rounded-md bg-[#FDC913] font-semibold text-lg text-[#292929]'>Sipariş Ver</button>
+          <button 
+            className='w-[386px] h-[62px] rounded-md bg-[#FDC913] font-semibold text-lg text-[#292929]'
+            onClick={handleOrder}
+          >
+            Sipariş Ver
+          </button>
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import OrderOption from './components/OrderOption';
-import OrderButton from './components/OrderButton';
+
 
 function App() {
   const [totalPrice, setTotalPrice] = useState(0);
@@ -12,7 +12,7 @@ function App() {
   return (
     <div>
       <OrderOption handleCheck={handleCheck} />
-      <OrderButton totalPrice={totalPrice} />
+      
     </div>
   );
 }
