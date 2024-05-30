@@ -1,6 +1,12 @@
+const flowbite = require("flowbite-react/tailwind");
 /** @type {import('tailwindcss').Config} */
 export default {
-  mode: 'jit', // JIT modunu etkinleştirin
+ 
+  content: [
+    // ...
+    flowbite.content(),
+  ],
+   mode: 'jit', // JIT modunu etkinleştirin
   purge: [
     './index.html',
     './src/**/*.{js,jsx,ts,tsx}',
@@ -18,5 +24,7 @@ export default {
       backgroundColor: ['checked'], // checked durumunda background rengini değiştirin
     },
   },
-  plugins: [],
+  plugins: [
+    flowbite.plugin(),
+  ],
 };

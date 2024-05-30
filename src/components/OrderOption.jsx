@@ -16,8 +16,10 @@ const OrderOption = () => {
     setSelectedItems(updatedItems);
   };
 
-  const handleOrder = () => {
-    console.log("Seçilen Malzemeler:", selectedItems);
+  const handleOrder = (total) => {
+    const numberedItems = selectedItems.map((item, index) => `Seçim ${index + 1}: ${item}`);
+    console.log("Seçilen Malzemeler:", numberedItems);
+    console.log("Ödenecek Tutar:", total + "₺");
   };
 
   const totalPrice = selectedItems.length * 5;

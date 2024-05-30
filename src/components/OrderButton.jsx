@@ -41,7 +41,7 @@ const OrderButton = ({ totalPrice, handleOrder }) => {
           </div>
           <button 
             className='w-[386px] h-[62px] rounded-md bg-[#FDC913] font-semibold text-lg text-[#292929]'
-            onClick={handleOrder}
+            onClick={() => handleOrder(total)}
           >
             Sipariş Ver
           </button>
