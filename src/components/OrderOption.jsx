@@ -54,7 +54,7 @@ const OrderOption = () => {
         <p className='text-xl font-semibold text-[#292929]'>Ek Malzemeler</p>
         <p className='text-base font-medium text-[#5F5F5F]'>En Fazla 10 malzeme seçebilirsiniz. 5₺</p>
       </div>
-      <div className='Frame9 flex gap-40 '>
+      <div className='Frame9 flex gap-40 py-12'>
         <div className='Checkdiv1 flex flex-col gap-4 font-bold text-base text-[#5F5F5F]'>
           {["Pepperoni", "Sosis", "Kanada Jambonu", "Tavuk Izgara", "Sarımsak"].map((label, index) => (
             <CheckBox key={label} label={label} handleCheck={handleCheck} ref={el => checkBoxRefs.current[index] = el} />
