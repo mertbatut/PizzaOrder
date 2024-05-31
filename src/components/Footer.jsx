@@ -43,15 +43,15 @@ export default function Footer() {
             <ul className='flex flex-col gap-12'>
                 <li className='flex flex-row-reverse justify-end'>
                     <p className='font-Barlow text-lg font-normal text-[#FFFFFF]'>+90 216 123 45 67</p>
-                    <img src="./images/phone.svg" alt="" />
+                    <img src="https://s3-alpha-sig.figma.com/img/5bcf/42e8/cf44624c37cb7290e61fd24e95f5f71c?Expires=1717977600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=p-foHALiHzswMo3IBSv69~q1Unj6g2JmKuxaSr-o2eQX0Rjj5V~mQbX4u-QOtCV-htBOZ2J8BrsgWMQSizkcjf8TxEAdHJa3zetfRJf7nwwExF4-3spv7dAXWPaVqY8NkSEIGHJpyQX2h0yNeRWOwzH4qI3g565jl3MC5xPiWb28hgfbla9IPO6F~lRzPtNzZ10tT5T5EPYfYKGAMVyid7Oi4sFbHA-R-MaUc1TkDUJGs0F964euoFJXZeXDZAkFDQK0kJMM0CHJFZ2aHIV8c7rECCpYc1wzzVOkayff4p4sRKrAXNe8NC-MmFd8Mn9sA0tRk0tiI~kko0PSlW3asg__" alt="" />
                 </li>
                 <li className='flex flex-row-reverse justify-end'>
                 <p className='font-Barlow text-lg font-normal text-[#FFFFFF]'>aciktim@teknolojikyemekler.com</p>
-                    <img src="./images/envelope.svg" alt="" />
+                    <img src="https://s3-alpha-sig.figma.com/img/9fff/c412/dba32836ccb7135781a5ffed3a177067?Expires=1717977600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=EiZT8y6RccmhLfCuzS~a3bZanzmsWFoPt7YcqNpSDuEdjuEAJRXUlN34G6YblpmEOl3RoZ39AaHZzhRbPJBTQDzuBB47OlEOeh5ybbW3Onoe-E-IRASXs0zfbwitGxHuOxXzvXsTmdwofztxsLxR9f0ecTQ3~ayZFvBeSws3LLieppkBX~K7UUP7vKSqZlNbFnvHTruz8i0z6k5-f6-nVVDwpu5iL5U0HT9RobdbPSTSdIRsYuCduLH4ByDP6WHkiRppuRf8MzJ6eHAThSpAdeEseyeFDrxMOzHJ3drZISRZyjHAl~8wJZtseuyU1DpWxFQC5tm-t55YJ10KnUolRA__" alt="" />
                 </li>
                 <li className='flex flex-row-reverse justify-end'>
                 <p className='font-Barlow text-lg font-normal text-[#FFFFFF]'>341 Londonderry Road, Istanbul Türkiye</p>
-                    <img src="./images/location.svg" alt="" />
+                    <img src="https://s3-alpha-sig.figma.com/img/0908/44d1/bf8ba15bccac8d589cd96d428c644077?Expires=1717977600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=daRgn5~XSexubbv9eFY5-05lPDQeWmNwA-WVW2D7nKbYenjbs7fgdwqgIUFCCbmrXiRgRr7l7ve~HV2auUCvqFd2m4vDoSAUscrW-yZkS3XWrUMrzt01W7C6oQJF9jtMcSBgH5xkiUBa3n0wcg59kb-t3fdxrYeFdY8Re-zznUAueuqtl42cakQgK~OEPpsZ1AXT15yi3i9LOFLbA3R7inWhVp~rEcnQmn5zTcJLKXGR1JmdR8LoATPgIy0TUeRO6CP3klIfCeSwlJSEkG8X2-vTdugiqMS~lCHj2xj1Qob90saVNzNgfAEH1fAub-tr~E206C-dTKsSFERFUKm6ig__" alt="" />
                 </li>
             </ul>
            
