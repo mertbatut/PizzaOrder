@@ -5,6 +5,7 @@ import { ToastContainer } from 'react-toastify';
 import Hamur from '../components/Hamur';
 import 'react-toastify/dist/ReactToastify.css';
 
+
 export default function PizzaProductSection() {
   const [totalPrice, setTotalPrice] = useState(0);
   const [selectedSize, setSelectedSize] = useState(null);
@@ -61,6 +62,8 @@ export default function PizzaProductSection() {
         <OrderOption ref={orderOptionRef} selectedSize={selectedSize} selectedDough={selectedDough} />
         <ToastContainer autoClose={2000} />
       </div>
+        
     </div>
+    
   );
 }
