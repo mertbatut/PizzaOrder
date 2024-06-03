@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 export default class Home extends Component {
   render() {
     return (
+      <>
       <div className="relative w-full h-screen bg-[#CE2829] flex flex-col justify-between items-center text-white overflow-hidden">
         <div className="absolute top-0 w-full text-center z-20 mt-4">
           <h1 className="text-5xl font-normal font-Londrina">Teknolojik Yemekler</h1>
@@ -37,6 +38,19 @@ export default class Home extends Component {
           alt="Pizza Ingredients"
         />
       </div>
+      <div className='IconSection bg-[#FFFFFF] py-8'>
+          <ul className='flex gap-[73px] justify-center'>
+            <li className='flex items-center gap-5'><a href="">Yeni Kore</a><img src="https://s3-alpha-sig.figma.com/img/2a12/f370/cf32c9057ad4d91cff5bfb6cf82c7087?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=g-5SWC0scLYkatAKpxr5XFfOxVy3qNfNvtxDcAFATTgQSfGJMvl~HuYtdsMV0tAfUMk3~rQaLGEf~mlFy5pJVWBRoI2ja~yr2jo70cMJsJQCyVCapxd0UHKNjCpBnE3vlxyBskkAlMlayN63NhLA4r8v~TK-yvHntaci~e7FL3r5hVGwYTpBGkXMXEa3LYp5NkyHvr3kAsRrGO0dEvIcXKDPBuK13NlCuVza1xoQjfCTcRgjZOWfHxIXevCQrSlfCqTmCJSvBtbDeN5rXNzCMyrWwpfEa2s6fAhqbw~hopmTuEd~Llc3BGq8fMlM55yrnEVCN8BptOAn2gvZKt2how__" alt="" /></li>
+            <li className='flex items-center gap-5'><a href="">Pizza</a><img src="https://s3-alpha-sig.figma.com/img/3db5/2209/4bb26a7c6402da2e5f2c39e566b59480?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=ovn~bvxMw0K-kbdcafkeFrdee2SR0SxzCYxYBEIEUxnLJyXQU9b310Kr7D6cTMA2ko84x4k7Doq6mkIz1josg7Z~usNQwktwTer4Wlek-mZ5Jxc3Xh-s9MQhTfvby9VFJJGxTJEf5oNM32SLOKTUM9ODAq4c5u3JpvKtWvadKykb4TEqKH9ryCF6k2eRSl2f0LOdtkb07l7rT0nOkjFy~G1X8m3vZgBxGxuxVITT-heqiCjoduXu8g5QF~sQpL0L0LBisVQDBtDQfPMkUXDqKArUIG3co63A-Qvl1e1P4PKwPwGjtR8NhFvYpStbIcgeBQFGFNI7qxdQM855Z9w3Bw__" alt="" /></li>
+            <li className='flex items-center gap-5'><a href="">Burger</a><img src="https://s3-alpha-sig.figma.com/img/150a/f637/0ef0632109b215d5033b6aaeb40d4e2b?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=ZDsOMA8gqoh8DRrIqNYKfMfvJY3~ZL4bbCRsLjddJD8aP-i71Mut5D5-CCYxO5zkD2TFay0EeNP3yeGPmLEx4huli3l55ooa1QUOujYYuNeM3g0XG4ROacvnaLvD5dqEF-XEoR2qoIxydxFTIW1qeJs1CtImvTkqOtOGt8jmM1qxTJFbIrzsE795Q1wQG5C8IfjToQAL2Ir8ETsTITCmDgoR0icY~ZdRasNCYUBcXYv9jzMIZ0z-pYdoBusEfjkHgKPF4Fs58ahecY7Zy896SowY6-GuxNcxqRrfRHIrVk~bVUgzx4A7MhEq5UuPmrcIMQkYiKb4r8sY8we-5pJUCQ__" alt="" /></li>
+            <li className='flex items-center gap-5'><a href="">Kızartmalar</a><img src="https://s3-alpha-sig.figma.com/img/1309/5a0d/52da3b4e6fe7e8ad5ab9c0703474762e?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=S8eswNVHesDI0x4blE2j-F69fMlfZdeIPYa2XF~SlT3MKQ23Hq8BJ3CCn0ZaCBnFLOgYwQxeQKdPN-NTr~NR~R20y8IrDa-59oa9vFdV~FYIXfhvXlvKKrIyyNM~yZFRgx0KZfdAI9Q2hkfS6Afyp5DfD1l~Kc9ULnn6Drdu4SKM2Cnkn-HIVJS3UtyUOAdd2j1L3K3P4Q0o0HrLr-ONyKUtnJjC5jmpybgjigafJSieB~YCjTPKzqOHlUF8OFFg1hL9xJ8sMto827AxHVipR-RtJl3F3QJB7aGP8LEIrX5S6qzl5AuIvyPzNTWQ32wcPV44ospK7k-6dJui0J4hbA__" alt="" /></li>
+            <li className='flex items-center gap-5'><a href="">Fast Food</a><img src="https://s3-alpha-sig.figma.com/img/a0bd/3d89/c8ba4e927016ed3c458e1e2b03a0fd47?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=n5EUBUF82lqiVgSrPrwrlKZhkHQ3fgQWehpX7~ExlBXSln2f42XygCLS9L3PNekSFgxGgs3o8vf7MBCgotFD2EFWeQw~~coJqZGKvNHG94Jk0L5HodGVkFmtxhpe2mNgoDBiUlmDpbc3N4CXnXFj8sQn-ecRC4KrPlElFaUvOmRvSFPvciOzm8BK9Ejuq~9aBx-1gLouv1ZsfhN~A2SYfn3SVGJkfK5kMKtmnDnrfTbKMGlBYjrB3KcC1xqyrioFX6kGhsPf~RxcSSjwRmis2YOCAcvDWu84C7dZsADEazuzSi5orxU4iCONwILRWYJ87CmwDEhp9-TPZR1SduJ0Dw__" alt="" /></li>
+            <li className='flex items-center gap-5'><a href="">Gazlı İçecek</a><img src="https://s3-alpha-sig.figma.com/img/d0a0/bb89/ccb1059768c63af268f17153b667d4b8?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=XHKK4bUkkdJ3iwYEET464EL9qsw9SDuNVpKx-un1mE6ENYcG7I9Sw2jNpQuQyAd80uB2PO6LVcfuBOD1YTkldPGjMuBqLFQM0vOHYwMXVNhYVMEIl6ePUQ9Z9C4au-MZli-L8MvN6rAnTOeFvrcQ2Z8Mdu1HX0USsRSHRoxYiwyYr1qkSM262OJwT9TExWqrhOnRjgUpO71cmlj90P32bIzWWka~5WsSCmPG0rmBmWsKSchRn-2faa7Onq00u4TinFrfniAv1hMVGeJLojXHCVfyx1H1gOvIPXKIMkuageJ6Ml1lH4YCS7mz2pRBZ0YqA4crGbOTMBbAMGyfmtC9LA__" alt="" /></li>
+          </ul>
+      </div>
+
+
+      </>
     );
   }
 }
