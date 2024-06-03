@@ -48,7 +48,25 @@ export default class Home extends Component {
             <li className='flex items-center gap-5'><a href="">Gazlı İçecek</a><img src="https://s3-alpha-sig.figma.com/img/d0a0/bb89/ccb1059768c63af268f17153b667d4b8?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=XHKK4bUkkdJ3iwYEET464EL9qsw9SDuNVpKx-un1mE6ENYcG7I9Sw2jNpQuQyAd80uB2PO6LVcfuBOD1YTkldPGjMuBqLFQM0vOHYwMXVNhYVMEIl6ePUQ9Z9C4au-MZli-L8MvN6rAnTOeFvrcQ2Z8Mdu1HX0USsRSHRoxYiwyYr1qkSM262OJwT9TExWqrhOnRjgUpO71cmlj90P32bIzWWka~5WsSCmPG0rmBmWsKSchRn-2faa7Onq00u4TinFrfniAv1hMVGeJLojXHCVfyx1H1gOvIPXKIMkuageJ6Ml1lH4YCS7mz2pRBZ0YqA4crGbOTMBbAMGyfmtC9LA__" alt="" /></li>
           </ul>
       </div>
-
+      <div className='KutuSection flex flex-col-reverse gap-10'>
+        <div className='Kutu1 bg-[#292929] w-[636px] h-[255px] rounded-xl flex flex-row just items-center '>
+            <div className='flex flex-col-reverse gap-8 pl-6'>
+              <a className='w-[138px] h-[48px] rounded-[50px] bg-[#FFFFFF] flex items-center justify-center text-sm font-semibold text-[#CE2829]' href=""><p>Sipariş Ver</p></a>
+              <p className='w-[100px] h-[86px] font-Barlow font-semibold text-3xl text-[#FFFFFF]'>Hackathlon Burger Menü</p>
+            </div>
+            <img className='w-auto h-auto' src="https://s3-alpha-sig.figma.com/img/6166/ed58/d63154ac0f2a8d7ea2d719fc064bc3f6?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=CkuAOPDsFo7BHm87ju4rkInbqPnWOt5ZY7NpvzFEN0205OWjjK9x08zkgSqp97PHaEddVaRAHwzG35qk9E-tgWFC4xW-6XZP-93EPPFkRyvJoetzb9raX9LX6z0dxO3WhlV3TjWIZWc1AwsvWAmZgVl3kzzUZEcVi-WAmc6ISRC2oLbniDivMIrGb04wz36VC1reugD1gk6QUXoQeJKeBiiBGeMo1g1k7cgnvSfcBEwBndI3jU7471Hao5Jn7EClxswyudAzNsovzgdOuYW76BiqyLg-Zbv1D-zcrws8LcwlgzfouKDccA2MCDP41ygoRnJuD1ZG3nhZwX0AV97D2A__" alt="" />
+        </div>
+        <div className='Kutu1 bg-[#292929] w-[636px] h-[255px] rounded-xl flex flex-row just items-center '>
+            <div className='flex flex-col-reverse gap-8 pl-6'>
+              <a className='w-[138px] h-[48px] rounded-[50px] bg-[#FFFFFF] flex items-center justify-center text-sm font-semibold text-[#CE2829]' href=""><p>Sipariş Ver</p></a>
+              <p className='w-[100px] h-[86px] font-Barlow font-semibold text-3xl text-[#FFFFFF]'>Hackathlon Burger Menü</p>
+            </div>
+            <img className='w-auto h-auto' src="https://s3-alpha-sig.figma.com/img/6166/ed58/d63154ac0f2a8d7ea2d719fc064bc3f6?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=CkuAOPDsFo7BHm87ju4rkInbqPnWOt5ZY7NpvzFEN0205OWjjK9x08zkgSqp97PHaEddVaRAHwzG35qk9E-tgWFC4xW-6XZP-93EPPFkRyvJoetzb9raX9LX6z0dxO3WhlV3TjWIZWc1AwsvWAmZgVl3kzzUZEcVi-WAmc6ISRC2oLbniDivMIrGb04wz36VC1reugD1gk6QUXoQeJKeBiiBGeMo1g1k7cgnvSfcBEwBndI3jU7471Hao5Jn7EClxswyudAzNsovzgdOuYW76BiqyLg-Zbv1D-zcrws8LcwlgzfouKDccA2MCDP41ygoRnJuD1ZG3nhZwX0AV97D2A__" alt="" />
+        </div>
+        <div className='Kutu2'>
+        
+        </div>
+      </div>
 
       </>
     );
