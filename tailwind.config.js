@@ -16,6 +16,8 @@ export default {
       fontFamily: {
         'Londrina': ['Londrina Solid', 'sans-serif'],
         'Barlow': ['Barlow', 'sans-serif'],
+        'Satisfy' : ["Satisfy", 'sans-serif']
+
       },
     },
   },
