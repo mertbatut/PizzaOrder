@@ -7,7 +7,7 @@ export default {
     flowbite.content(),
   ],
    mode: 'jit', // JIT modunu etkinleştirin
-  purge: [
+   content: [
     './index.html',
     './src/**/*.{js,jsx,ts,tsx}',
   ],
