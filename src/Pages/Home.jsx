@@ -53,23 +53,23 @@ export default class Home extends Component {
         <div className='Kutu1 bg-[#292929] w-[636px] h-[255px] rounded-xl flex flex-row just items-center '>
             <div className='flex flex-col-reverse gap-8 pl-6'>
               <a className='w-[138px] h-[48px] rounded-[50px] bg-[#FFFFFF] flex items-center justify-center text-sm font-semibold text-[#CE2829]' href=""><p>Sipariş Ver</p></a>
-              <p className='w-[100px] h-[86px] font-Barlow font-semibold text-3xl text-[#FFFFFF]'>Hackathlon Burger Menü</p>
+              <p className='w-[240px] h-[86px] font-Barlow font-semibold text-3xl text-[#FFFFFF]'>Hackathlon Burger Menü</p>
             </div>
-            <img className='w-auto h-auto' src="https://s3-alpha-sig.figma.com/img/6166/ed58/d63154ac0f2a8d7ea2d719fc064bc3f6?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=CkuAOPDsFo7BHm87ju4rkInbqPnWOt5ZY7NpvzFEN0205OWjjK9x08zkgSqp97PHaEddVaRAHwzG35qk9E-tgWFC4xW-6XZP-93EPPFkRyvJoetzb9raX9LX6z0dxO3WhlV3TjWIZWc1AwsvWAmZgVl3kzzUZEcVi-WAmc6ISRC2oLbniDivMIrGb04wz36VC1reugD1gk6QUXoQeJKeBiiBGeMo1g1k7cgnvSfcBEwBndI3jU7471Hao5Jn7EClxswyudAzNsovzgdOuYW76BiqyLg-Zbv1D-zcrws8LcwlgzfouKDccA2MCDP41ygoRnJuD1ZG3nhZwX0AV97D2A__" alt="" />
+            <img className='w-[auto] h-auto overflow-hidden' src="https://s3-alpha-sig.figma.com/img/6166/ed58/d63154ac0f2a8d7ea2d719fc064bc3f6?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=CkuAOPDsFo7BHm87ju4rkInbqPnWOt5ZY7NpvzFEN0205OWjjK9x08zkgSqp97PHaEddVaRAHwzG35qk9E-tgWFC4xW-6XZP-93EPPFkRyvJoetzb9raX9LX6z0dxO3WhlV3TjWIZWc1AwsvWAmZgVl3kzzUZEcVi-WAmc6ISRC2oLbniDivMIrGb04wz36VC1reugD1gk6QUXoQeJKeBiiBGeMo1g1k7cgnvSfcBEwBndI3jU7471Hao5Jn7EClxswyudAzNsovzgdOuYW76BiqyLg-Zbv1D-zcrws8LcwlgzfouKDccA2MCDP41ygoRnJuD1ZG3nhZwX0AV97D2A__" alt="" />
         </div>
         <div className='Kutu2 bg-[#292929] w-[636px] h-[255px] rounded-xl flex flex-row just items-center '>
             <div className='flex flex-col-reverse gap-8 pl-6'>
               <a className='w-[138px] h-[48px] rounded-[50px] bg-[#FFFFFF] flex items-center justify-center text-sm font-semibold text-[#CE2829]' href=""><p>Sipariş Ver</p></a>
-              <p className='w-[100px] h-[86px] font-Barlow font-semibold text-3xl text-[#FFFFFF]'>Hackathlon Burger Menü</p>
+              <p className='w-[240px] h-[86px] font-Barlow font-semibold text-3xl text-[#FFFFFF]'>Hackathlon Burger Menü</p>
             </div>
-            <img className='w-auto h-auto' src="https://s3-alpha-sig.figma.com/img/6166/ed58/d63154ac0f2a8d7ea2d719fc064bc3f6?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=CkuAOPDsFo7BHm87ju4rkInbqPnWOt5ZY7NpvzFEN0205OWjjK9x08zkgSqp97PHaEddVaRAHwzG35qk9E-tgWFC4xW-6XZP-93EPPFkRyvJoetzb9raX9LX6z0dxO3WhlV3TjWIZWc1AwsvWAmZgVl3kzzUZEcVi-WAmc6ISRC2oLbniDivMIrGb04wz36VC1reugD1gk6QUXoQeJKeBiiBGeMo1g1k7cgnvSfcBEwBndI3jU7471Hao5Jn7EClxswyudAzNsovzgdOuYW76BiqyLg-Zbv1D-zcrws8LcwlgzfouKDccA2MCDP41ygoRnJuD1ZG3nhZwX0AV97D2A__" alt="" />
+            <img className=' overflow-hidden' src="https://s3-alpha-sig.figma.com/img/6166/ed58/d63154ac0f2a8d7ea2d719fc064bc3f6?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=CkuAOPDsFo7BHm87ju4rkInbqPnWOt5ZY7NpvzFEN0205OWjjK9x08zkgSqp97PHaEddVaRAHwzG35qk9E-tgWFC4xW-6XZP-93EPPFkRyvJoetzb9raX9LX6z0dxO3WhlV3TjWIZWc1AwsvWAmZgVl3kzzUZEcVi-WAmc6ISRC2oLbniDivMIrGb04wz36VC1reugD1gk6QUXoQeJKeBiiBGeMo1g1k7cgnvSfcBEwBndI3jU7471Hao5Jn7EClxswyudAzNsovzgdOuYW76BiqyLg-Zbv1D-zcrws8LcwlgzfouKDccA2MCDP41ygoRnJuD1ZG3nhZwX0AV97D2A__" alt="" />
         </div>
         </div>
         <div className='Kutu3'>
           <div className='w-[636px] h-[538px] rounded-xl bg-[#CE2829]'>
-          <span className='flex flex-col-reverse items-start gap-4'>
+          <span className='flex flex-col-reverse items-start gap-4 absolute pt-8 pl-4 w-[270px]'>
           <a className='w-[138px] h-[48px] rounded-[50px] bg-[#FFFFFF] flex items-center justify-center text-sm font-semibold text-[#CE2829]' href=""><p>Sipariş Ver</p></a>
-            <p className='text-xl font-Barlow font-semibold text-[#FFFFFF]'>Position:Absolute Acı Burger</p>
+          <p className='text-xl font-Barlow font-semibold text-[#FFFFFF]'>Position:Absolute Acı Burger</p>
             <p className='font-Quattrocento text-[68px] text-[#FFFFFF] font-bold'>Özel Lezzetus</p>
             </span>
             <img className='w-[636px] h-[538px]' src="https://s3-alpha-sig.figma.com/img/c436/3ab0/a2144978475fda5e250917960da4ea56?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Y11gCKVHqXkfsTzNip-UGGDRMuMi36M8duxEASrHPlA8yb5dejZTj9v3iBCYn7i8wLHPF~Dhw3GDn0nD4alfdaJMamfSx9wOVBYhohRyI4ul77cX7Xd~bMrmLsbDW-s9s8n22c2jN~xD045MThmgZ4b5VqVSqe0JtE2aD9Gdy-PFmy3Hu9GavZcSZLVzsN-LLHljLlvq83lDC7fxlibrhY8DbXKBMYJ94ODvd40GB7bb6JcSCf2s6kvrnLfHYAED0mi3LhzwPDOuTfY1Ihdw-AwWi32mDWQLWgW~dx6J-O7LoyDfmprSW7gWxMdb5YMb6LGmUWne8~43T4Xm3asQaw__" alt="" />
