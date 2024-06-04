@@ -1,10 +1,11 @@
+import { Footer } from 'flowbite-react';
 import React, { Component } from 'react';
 
 export default class Home extends Component {
   render() {
     return (
       <>
-      <div className="relative w-full h-screen bg-[#CE2829] flex flex-col justify-between items-center text-white overflow-hidden">
+      <div className="relative w-full h-screen bg-[#CE2829] flex flex-col justify-between items-center text-white overflow-hidden ">
         <div className="absolute top-0 w-full text-center z-20 mt-4">
           <h1 className="text-5xl font-normal font-Londrina">Teknolojik Yemekler</h1>
         </div>
@@ -48,7 +49,7 @@ export default class Home extends Component {
             <li className='flex items-center gap-5'><a href="">Gazlı İçecek</a><img src="https://s3-alpha-sig.figma.com/img/d0a0/bb89/ccb1059768c63af268f17153b667d4b8?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=XHKK4bUkkdJ3iwYEET464EL9qsw9SDuNVpKx-un1mE6ENYcG7I9Sw2jNpQuQyAd80uB2PO6LVcfuBOD1YTkldPGjMuBqLFQM0vOHYwMXVNhYVMEIl6ePUQ9Z9C4au-MZli-L8MvN6rAnTOeFvrcQ2Z8Mdu1HX0USsRSHRoxYiwyYr1qkSM262OJwT9TExWqrhOnRjgUpO71cmlj90P32bIzWWka~5WsSCmPG0rmBmWsKSchRn-2faa7Onq00u4TinFrfniAv1hMVGeJLojXHCVfyx1H1gOvIPXKIMkuageJ6Ml1lH4YCS7mz2pRBZ0YqA4crGbOTMBbAMGyfmtC9LA__" alt="" /></li>
           </ul>
       </div>
-      <div className='KutuSection flex flex-row-reverse gap-10 justify-center py-32'>
+      <div className='KutuSection flex flex-row-reverse gap-10 justify-center py-32 bg-[#FAF7F2]'>
        <div className='flex flex-col gap-6'>
         <div className='Kutu1 bg-[#292929] w-[636px] h-[255px] rounded-xl flex flex-row just items-center '>
             <div className='flex flex-col-reverse gap-8 pl-6'>
@@ -76,6 +77,7 @@ export default class Home extends Component {
           </div>
           
         </div>
+        
       </div>
 
       </>
