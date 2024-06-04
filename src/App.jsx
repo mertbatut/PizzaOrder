@@ -1,18 +1,18 @@
-import React, { useState, useRef } from 'react';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './Pages/Home';
+import PizzaProductSection from './Pages/PizzaProductSection';
 import Success from './Pages/Success';
-// import PizzaProductSection from './Pages/PizzaProductSection';
-// import Home from './Pages/Home';
-// import Footer from './components/Footer'
-function App() {
-  
 
+function App() {
   return (
-    <div>
-     {/* <PizzaProductSection/> */}
-     {/* <Home/>
-     <Footer/> */}
-     <Success/>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/PizzaMenu" element={<PizzaProductSection />} />
+        <Route path="/success" element={<Success />} />
+      </Routes>
+    </Router>
   );
 }
 
