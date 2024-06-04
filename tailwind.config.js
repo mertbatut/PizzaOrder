@@ -17,7 +17,8 @@ export default {
         'Londrina': ['Londrina Solid', 'sans-serif'],
         'Barlow': ['Barlow', 'sans-serif'],
         'Satisfy' : ["Satisfy", 'sans-serif'],
-        'Quattrocento' : ["Quattrocento" , 'sans-serif']
+        'Quattrocento' : ["Quattrocento" , 'sans-serif'],
+        'Condensed': ["Condensed", 'sans-serif']
       },
     },
   },
