@@ -4,11 +4,13 @@ import OrderButton from './OrderButton';
 import '../index.css';
 import { toast } from 'react-toastify';
 import { HiCheck } from 'react-icons/hi';
+import { useHistory } from 'react-router-dom';
 
 const OrderOption = forwardRef(({ selectedSize, selectedDough }, ref) => {
   const [selectedItems, setSelectedItems] = useState([]);
   const checkBoxRefs = useRef([]);
   const orderButtonRef = useRef(null);
+  const history = useHistory();
 
   useImperativeHandle(ref, () => ({
     resetSelections() {
@@ -52,6 +54,7 @@ const OrderOption = forwardRef(({ selectedSize, selectedDough }, ref) => {
       {
         className: 'bg-green-500 text-white',
         bodyClassName: 'text-sm',
+        onClose: () => window.location.href = '/success', // window.location.href kullanarak yönlendirin
       }
     );
 

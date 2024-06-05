@@ -1,10 +1,11 @@
 import React, { useState, useRef } from 'react';
 import { Breadcrumb } from "flowbite-react";
+import { useHistory } from 'react-router-dom';
 import OrderOption from '../components/OrderOption';
-import { ToastContainer } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import Hamur from '../components/Hamur';
+import OrderButton from '../components/OrderButton'; // OrderButton'ı ekleyin
 import 'react-toastify/dist/ReactToastify.css';
-
 
 export default function PizzaProductSection() {
   const [totalPrice, setTotalPrice] = useState(0);
@@ -13,6 +14,7 @@ export default function PizzaProductSection() {
   
   const hamurRef = useRef(null);
   const orderOptionRef = useRef(null);
+  const history = useHistory();
 
   const handleSizeChange = (size) => {
     setSelectedSize(size);
@@ -30,6 +32,10 @@ export default function PizzaProductSection() {
       orderOptionRef.current.resetSelections();
     }
     setTotalPrice(0);
+    toast.success('Siparişiniz başarı ile oluşturuldu!', {
+      onClose: () => history.push('/success'),
+      autoClose: 2000,
+    });
   };
 
   return (
@@ -42,7 +48,7 @@ export default function PizzaProductSection() {
            <img className='mt-[-18rem]' src="https://s3-alpha-sig.figma.com/img/3dc3/888e/fb1b2dee44748bbd31d4f786edc3a4d1?Expires=1717977600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=pYVL3p0wv-i9MeO-u~0dgPsooOWglRmSI1s1H93R1QFkls8JFbacloR5xm36CmmYmSDp78zA9ZWJdtr5G~zlM2EzK4NReYST3QAKOFY0bnRP9AP0k41SdPInTPBV~AQri~8zOl7CzIaclr6bE2a6P6jQqnw0G6~xHIjr5vVjV1UUrGXJddrkDcoqpwBtx6trHWQBZ8rt14fWnAWYq6TKyL2xA2UrHy8HHJZml~2BVCeETcR6Ctfxf6OQk1TKJujdwF2MtdYisodBVUe5Et8SfwaP1NIFvm5YMTbIG50MBX01vAP7iOv4B4vf1KHcfZcY1eBhlJ3QHlD6aR-rrp2tAQ__" alt="Pizza" />
         </div>
         <Breadcrumb aria-label="Solid background breadcrumb example" className="px-96 py-24 dark:bg-gray-800">
-          <Breadcrumb.Item href="#">Ana Sayfa</Breadcrumb.Item>
+          <Breadcrumb.Item href="/">Ana Sayfa</Breadcrumb.Item>
           <Breadcrumb.Item>Sipariş Oluştur</Breadcrumb.Item>
         </Breadcrumb>
         <div className='flex flex-col items-center gap-10'>
@@ -60,10 +66,9 @@ export default function PizzaProductSection() {
         </div>
         <Hamur ref={hamurRef} onSizeChange={handleSizeChange} onDoughChange={handleDoughChange} />
         <OrderOption ref={orderOptionRef} selectedSize={selectedSize} selectedDough={selectedDough} />
+       
         <ToastContainer autoClose={2000} />
       </div>
-        
     </div>
-    
   );
 }
