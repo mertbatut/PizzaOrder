@@ -1,7 +1,9 @@
 import React, { useState, forwardRef, useImperativeHandle } from 'react';
+import { useHistory } from 'react-router-dom';
 
-const OrderButton = forwardRef(({ totalPrice, handleOrder }, ref) => {
-  const [count, setCount] = useState(0);
+const OrderButton = forwardRef(({ totalPrice, handleOrder, selectedItems, selectedSize, selectedDough }, ref) => {
+  const [count, setCount] = useState(1);
+  const history = useHistory();
 
   useImperativeHandle(ref, () => ({
     reset() {
@@ -47,7 +49,7 @@ const OrderButton = forwardRef(({ totalPrice, handleOrder }, ref) => {
           </div>
           <button 
             className='w-[386px] h-[62px] rounded-md bg-[#FDC913] font-semibold text-lg text-[#292929]'
-            onClick={() => handleOrder(total)}
+            onClick={() => handleOrder(total, selectedItems, selectedSize, selectedDough, history)}
           >
             Sipariş Ver
           </button>

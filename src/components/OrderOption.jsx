@@ -32,7 +32,7 @@ const OrderOption = forwardRef(({ selectedSize, selectedDough }, ref) => {
     setSelectedItems(updatedItems);
   };
 
-  const handleOrder = (total) => {
+  const handleOrder = (total, selectedItems, selectedSize, selectedDough, history) => {
     if (!selectedSize || !selectedDough) {
       toast.error('Lütfen bir boyut ve hamur tipi seçin.');
       return;
@@ -54,7 +54,7 @@ const OrderOption = forwardRef(({ selectedSize, selectedDough }, ref) => {
       {
         className: 'bg-green-500 text-white',
         bodyClassName: 'text-sm',
-        onClose: () => window.location.href = '/success', // window.location.href kullanarak yönlendirin
+        onClose: () => history.push('/success', { selectedItems, selectedSize, selectedDough, total }), // Kullanıcıyı yönlendir ve state ver
       }
     );
 
@@ -91,7 +91,14 @@ const OrderOption = forwardRef(({ selectedSize, selectedDough }, ref) => {
           ))}
         </div>
       </div>
-      <OrderButton ref={orderButtonRef} totalPrice={totalPrice} handleOrder={handleOrder} />
+      <OrderButton 
+        ref={orderButtonRef} 
+        totalPrice={totalPrice} 
+        handleOrder={handleOrder} 
+        selectedItems={selectedItems} 
+        selectedSize={selectedSize} 
+        selectedDough={selectedDough} 
+      />
     </div>
   );
 });
