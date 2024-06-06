@@ -1,13 +1,14 @@
 {
-  "rewrites": [
-    { "source": "/old-path", "destination": "/new-path" }
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
+    }
   ],
-  "redirects": [
-    { "source": "/old-redirect", "destination": "/new-destination", "permanent": true }
-  ],
-  "headers": [
-    { "source": "/(.*)", "headers": [{ "key": "X-Content-Type-Options", "value": "nosniff" }] }
-  ],
-  "cleanUrls": true,
-  "trailingSlash": false
+  "routes": [
+    { "src": "/(.*)", "dest": "/" }
+  ]
 }
