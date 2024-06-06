@@ -3,6 +3,11 @@
 @tailwind utilities;
 
 
+.product-card {
+  @apply p-4 bg-white shadow-md rounded-lg;
+}
+
+
 input[type="checkbox"] {
     appearance: none;
     -webkit-appearance: none;

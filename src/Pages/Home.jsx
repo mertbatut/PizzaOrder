@@ -1,6 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-
+import ProductList from '../components/Product/ProductList';
+import Footer from '../components/Footer'
 export default function Home() {
   const history = useHistory();
 
@@ -99,6 +100,10 @@ export default function Home() {
           </span>
         </div>
         <div></div>
+
+        <ProductList />
+        <Footer />
+
       </div>
     </>
   );
