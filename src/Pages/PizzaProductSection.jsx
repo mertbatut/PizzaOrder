@@ -41,7 +41,7 @@ export default function PizzaProductSection() {
   return (
     <div>
       <div className='OrderHeader w-screen h-[101px] bg-[#CE2829] flex justify-center items-center absolute'>
-        <p className='text-5xl text-[#FFFFFF] font-normal font-Londrina'>Teknolojik Yemekler</p>
+        <a href="/"><p className='text-5xl text-[#FFFFFF] font-normal font-Londrina'>Teknolojik Yemekler</p></a>
       </div>
       <div className='bg-[#FAF7F2] w-screen h-[650px]'>
         <div className='PizzaImg flex justify-center'>

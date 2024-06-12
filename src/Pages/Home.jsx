@@ -13,7 +13,7 @@ export default function Home() {
     <>
       <div className="relative w-full h-screen bg-[#CE2829] flex flex-col justify-between items-center text-white overflow-hidden ">
         <div className="absolute top-0 w-full text-center z-20 mt-4">
-          <h1 className="text-5xl font-normal font-Londrina text-[#FFFFFF]">Teknolojik Yemekler</h1>
+          <a href="/"><h1 className="text-5xl font-normal font-Londrina text-[#FFFFFF]">Teknolojik Yemekler</h1></a>
         </div>
         <div className="absolute top-1/2 transform -translate-y-1/2 flex flex-col items-center z-20">
           <p className="text-4xl mb-2 font-Satisfy font-normal text-[#FDC913]">fırsatı kaçırma</p>
