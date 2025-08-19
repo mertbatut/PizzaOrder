@@ -22,35 +22,38 @@ const Hamur = forwardRef(({ onSizeChange, onDoughChange }, ref) => {
     };
 
     return (
-        <div>
-            <div className='Frame16 flex justify-evenly items-center py-12'>
-                <div className='SizeDiv'>
-                    <ul className='flex gap-4'>
+        <div className="bg-white rounded-xl shadow-lg p-8 mb-8 w-full max-w-3xl mx-auto">
+            <div className="flex flex-col lg:flex-row justify-evenly items-center py-8 gap-8 lg:gap-12">
+                <div className="SizeDiv text-center">
+                    <p className="mb-4 text-lg font-semibold text-[#292929]">Boyut Seç</p>
+                    <ul className="flex gap-4">
                         {['S', 'M', 'L'].map((size) => (
-                            <a
+                            <button
                                 key={size}
-                                className={`w-[56px] h-[56px] rounded-3xl flex items-center justify-center ${
-                                    selectedSize === size ? 'bg-[#FFEECC] text-black' : 'bg-[#FAF7F2]'
+                                type="button"
+                                className={`w-[56px] h-[56px] rounded-3xl flex items-center justify-center font-bold transition-all duration-200 border-2 ${
+                                    selectedSize === size
+                                        ? 'bg-[#FFEECC] text-black border-[#FDC913] shadow-lg scale-110'
+                                        : 'bg-[#FAF7F2] text-[#5F5F5F] border-[#FAF7F2] hover:bg-[#FFEECC] hover:border-[#FDC913] hover:scale-105'
                                 }`}
-                                href="#"
                                 onClick={() => handleSizeClick(size)}
+                                aria-pressed={selectedSize === size}
                             >
                                 {size}
-                            </a>
+                            </button>
                         ))}
                     </ul>
-                    <p>Boyut Seç</p>
                 </div>
-                <div className='KalinlikDiv'>
+                <div className="KalinlikDiv w-full max-w-sm">
                     <form className="max-w-sm mx-auto">
-                        <label htmlFor="dough" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                        <label htmlFor="dough" className="block mb-2 text-lg font-semibold text-[#292929]">
                             Hamur Seç
                         </label>
                         <select
                             id="dough"
                             value={selectedDough}
                             onChange={handleDoughChange}
-                            className="bg-[#FAF7F2] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            className="bg-[#FAF7F2] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#FDC913] focus:border-[#FDC913] block w-full p-2.5"
                         >
                             <option value="">--Hamur Kalınlığı Seç--</option>
                             <option value="ince kenar">İnce Kenar</option>

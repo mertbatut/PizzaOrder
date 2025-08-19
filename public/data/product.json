@@ -1,0 +1,70 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Terminal Pizza",
+      "category": "CHEESE, PIZZA",
+      "rating": "4.9",
+      "comments": "(200)",
+      "price": "12.00",
+      "originalPrice": null,
+      "onSale": false,
+      "image": "/images/pizzaresim.png"
+    },
+    {
+      "id": 2,
+      "name": "Position Absolute Acı Pizza",
+      "category": "SPICY, PIZZA",
+      "rating": "4.9",
+      "comments": "(200)",
+      "price": "15.00",
+      "originalPrice": null,
+      "onSale": false,
+      "image": "/images/pizzaresim.png"
+    },
+    {
+      "id": 3,
+      "name": "useEffect Tavuklu Burger",
+      "category": "CREAMY, BURGER",
+      "rating": "4.9",
+      "comments": "(200)",
+      "price": "8.00",
+      "originalPrice": "10.00",
+      "onSale": true,
+      "image": "/images/tavukburger.png"
+    },
+    {
+      "id": 4,
+      "name": "Hackathlon Burger",
+      "category": "BBQ, MEAT",
+      "rating": "4.8",
+      "comments": "(150)",
+      "price": "12.00",
+      "originalPrice": null,
+      "onSale": false,
+      "image": "/images/burgerresim.png"
+    },
+    {
+      "id": 5,
+      "name": "useState Chicken Wings",
+      "category": "SPICY, CHICKEN",
+      "rating": "4.7",
+      "comments": "(89)",
+      "price": "9.00",
+      "originalPrice": "12.00",
+      "onSale": true,
+      "image": "/images/chicken.png"
+    },
+    {
+      "id": 6,
+      "name": "Props Pasta Primavera",
+      "category": "VEGETARIAN, PASTA",
+      "rating": "4.6",
+      "comments": "(120)",
+      "price": "11.00",
+      "originalPrice": null,
+      "onSale": false,
+      "image": "/images/et.png"
+    }
+  ]
+}

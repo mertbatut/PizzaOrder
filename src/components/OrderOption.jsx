@@ -1,24 +1,15 @@
 import React, { useState, useRef, useImperativeHandle, forwardRef } from 'react';
 import CheckBox from './CheckBox';
-import OrderButton from './OrderButton';
 import '../index.css';
-import { toast } from 'react-toastify';
-import { HiCheck } from 'react-icons/hi';
-import { useHistory } from 'react-router-dom';
 
-const OrderOption = forwardRef(({ selectedSize, selectedDough }, ref) => {
+const OrderOption = forwardRef(({ selectedSize, selectedDough, onIngredientsChange }, ref) => {
   const [selectedItems, setSelectedItems] = useState([]);
   const checkBoxRefs = useRef([]);
-  const orderButtonRef = useRef(null);
-  const history = useHistory();
 
   useImperativeHandle(ref, () => ({
     resetSelections() {
       setSelectedItems([]);
-      checkBoxRefs.current.forEach(ref => ref.reset());
-      if (orderButtonRef.current) {
-        orderButtonRef.current.reset();
-      }
+      checkBoxRefs.current.forEach(ref => ref && ref.reset());
     }
   }));
 
@@ -30,75 +21,66 @@ const OrderOption = forwardRef(({ selectedSize, selectedDough }, ref) => {
       updatedItems = selectedItems.filter(item => item !== label);
     }
     setSelectedItems(updatedItems);
-  };
-
-  const handleOrder = (total, selectedItems, selectedSize, selectedDough, history) => {
-    if (!selectedSize || !selectedDough) {
-      toast.error('Lütfen bir boyut ve hamur tipi seçin.');
-      return;
-    }
-
-    const numberedItems = selectedItems.map((item, index) => `Seçim ${index + 1}: ${item}`);
-    console.log("Seçilen Malzemeler:", numberedItems);
-    console.log("Seçilen Boyut:", selectedSize);
-    console.log("Seçilen Hamur Tipi:", selectedDough);
-    console.log("Ödenecek Tutar:", total + "₺");
-
-    toast(
-      <div className="flex items-center">
-        <div className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-green-100 text-green-500 dark:bg-green-800 dark:text-green-200">
-          <HiCheck className="h-5 w-5" />
-        </div>
-        <div className="ml-3 text-sm font-normal">Sipariş başarıyla verildi.</div>
-      </div>,
-      {
-        className: 'bg-green-500 text-white',
-        bodyClassName: 'text-sm',
-        onClose: () => history.push('/success', { selectedItems, selectedSize, selectedDough, total }), // Kullanıcıyı yönlendir ve state ver
-      }
-    );
-
-    // Reset all selections after order is placed
-    setSelectedItems([]);
-    checkBoxRefs.current.forEach(ref => ref.reset());
-    if (orderButtonRef.current) {
-      orderButtonRef.current.reset();
+    
+    // Parent component'e seçilen malzemeleri bildir
+    if (onIngredientsChange) {
+      onIngredientsChange(updatedItems);
     }
   };
 
-  const totalPrice = selectedItems.length * 5;
+  const ingredients = [
+    // İlk sütun
+    ["Pepperoni", "Sosis", "Kanada Jambonu", "Tavuk Izgara", "Sarımsak"],
+    // İkinci sütun  
+    ["Mısır", "Ananas", "Soğan", "Sucuk", "Biber"],
+    // Üçüncü sütun
+    ["Kabak", "Domates", "Jalepano", "Füme Et", "Zeytin"]
+  ];
 
   return (
-    <div className='flex flex-col items-center'>
-      <div className='Frame10 '>
-        <p className='text-xl font-semibold text-[#292929]'>Ek Malzemeler</p>
-        <p className='text-base font-medium text-[#5F5F5F]'>En Fazla 10 malzeme seçebilirsiniz. 5₺</p>
+    <div className="bg-white rounded-xl shadow-lg p-8 mb-8 w-full max-w-3xl mx-auto flex flex-col items-center">
+      <div className="Frame10 text-center mb-8">
+        <p className="text-2xl font-bold text-[#292929] mb-2">Ek Malzemeler</p>
+        <p className="text-base font-medium text-[#5F5F5F]">
+          En az 4, en fazla 10 malzeme seçebilirsiniz. <span className="font-semibold">(Her biri 5₺)</span>
+        </p>
+        <p className="text-sm text-[#5F5F5F] mt-1">
+          Seçilen: <span className="font-bold text-[#FDC913]">{selectedItems.length}</span>/10
+        </p>
       </div>
-      <div className='Frame9 flex gap-40 py-12'>
-        <div className='Checkdiv1 flex flex-col gap-4 font-bold text-base text-[#5F5F5F]'>
-          {["Pepperoni", "Sosis", "Kanada Jambonu", "Tavuk Izgara", "Sarımsak"].map((label, index) => (
-            <CheckBox key={label} label={label} handleCheck={handleCheck} ref={el => checkBoxRefs.current[index] = el} />
-          ))}
-        </div>
-        <div className='Checkdiv2 flex flex-col gap-4 font-bold text-base text-[#5F5F5F]'>
-          {["Mısır", "Ananas", "Soğan", "Sucuk", "Biber"].map((label, index) => (
-            <CheckBox key={label} label={label} handleCheck={handleCheck} ref={el => checkBoxRefs.current[5 + index] = el} />
-          ))}
-        </div>
-        <div className='Checkdiv3 flex flex-col gap-4 font-bold text-base text-[#5F5F5F]'>
-          {["Kabak", "Domates", "Jalepano", "Sucuk", "Füme Et"].map((label, index) => (
-            <CheckBox key={label} label={label} handleCheck={handleCheck} ref={el => checkBoxRefs.current[10 + index] = el} />
-          ))}
-        </div>
+
+      <div className="Frame9 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-16 py-8 w-full justify-items-center">
+        {ingredients.map((column, columnIndex) => (
+          <div key={columnIndex} className="flex flex-col gap-4 font-bold text-base text-[#5F5F5F] w-full">
+            {column.map((ingredient, index) => {
+              const globalIndex = columnIndex * 5 + index;
+              return (
+                <CheckBox
+                  key={ingredient}
+                  label={ingredient}
+                  handleCheck={handleCheck}
+                  ref={el => checkBoxRefs.current[globalIndex] = el}
+                  disabled={!selectedItems.includes(ingredient) && selectedItems.length >= 10}
+                />
+              );
+            })}
+          </div>
+        ))}
       </div>
-      <OrderButton 
-        ref={orderButtonRef} 
-        totalPrice={totalPrice} 
-        handleOrder={handleOrder} 
-        selectedItems={selectedItems} 
-        selectedSize={selectedSize} 
-        selectedDough={selectedDough} 
-      />
+
+      {/* Seçim durumu göstergesi */}
+      <div className="mb-4 w-full flex justify-center">
+        {selectedItems.length < 4 && (
+          <p className="text-orange-600 text-sm bg-orange-50 border border-orange-200 rounded-lg px-4 py-2 shadow-sm">
+            En az {4 - selectedItems.length} malzeme daha seçmelisiniz
+          </p>
+        )}
+        {selectedItems.length >= 4 && selectedItems.length <= 10 && (
+          <p className="text-green-600 text-sm bg-green-50 border border-green-200 rounded-lg px-4 py-2 shadow-sm">
+            ✓ Malzeme seçimi tamamlandı
+          </p>
+        )}
+      </div>
     </div>
   );
 });
