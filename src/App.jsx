@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './Pages/Home';
 import Success from './Pages/Success';
 import ProductSection from './Pages/ProductSection';
+import ProductsPage from './Pages/ProductPage';
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
         
         {/* Varsayılan ürün rotası - ID olmadan */}
         <Route path="/PizzaMenu" element={<ProductSection />} />
-        
+        <Route path="/products" element={<ProductsPage />} />
         <Route path="/success" element={<Success />} />
       </Routes>
     </Router>

@@ -43,7 +43,10 @@ const Header = () => {
             </div>
             
             <div className="relative group">
-              <button className="flex items-center space-x-1 text-gray-700 hover:text-red-500 transition-colors font-medium py-2">
+              <button
+                className="flex items-center space-x-1 text-gray-700 hover:text-red-500 transition-colors font-medium py-2"
+                onClick={() => navigate('/products')}
+              >
                 <span>Pages</span>
                 <svg className="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -126,7 +129,10 @@ const Header = () => {
           <div className="lg:hidden mt-4 pb-4 border-t border-gray-200 animate-slideDown">
             <nav className="flex flex-col space-y-3 pt-4">
               <button className="text-left text-gray-700 hover:text-red-500 transition-colors font-medium py-2 px-2 rounded-lg hover:bg-red-50">Home</button>
-              <button className="text-left text-gray-700 hover:text-red-500 transition-colors font-medium py-2 px-2 rounded-lg hover:bg-red-50">Pages</button>
+              <button
+                className="text-left text-gray-700 hover:text-red-500 transition-colors font-medium py-2 px-2 rounded-lg hover:bg-red-50"
+                onClick={() => navigate('/products')}
+              >Pages</button>
               <button 
                 onClick={navigateToMenu}
                 className="text-left text-gray-700 hover:text-red-500 transition-colors font-medium py-2 px-2 rounded-lg hover:bg-red-50"
