@@ -222,7 +222,7 @@ export default function Footer() {
       </footer>
 
       {/* CSS Animations */}
-      <style jsx>{`
+  <style>{`
         @keyframes slideInLeft {
           from {
             opacity: 0;

@@ -5,6 +5,7 @@ import LoadingSpinner from '../components/UI/LoadingSpinner';
 import ErrorMessage from '../components/UI/ErrorMessage';
 import EmptyState from '../components/UI/EmptyState';
 import ProductCard from '../components/Product/ProductCard';
+import ProductQuickViewModal from '../components/Product/ProductQuickViewModal';
 
 const SORT_OPTIONS = {
   NAME: 'name',
@@ -20,6 +21,9 @@ const VIEW_MODES = {
 };
 
 const ProductsPage = () => {
+  // Quick view modal state
+  const [quickViewProduct, setQuickViewProduct] = useState(null);
+  const [isQuickViewOpen, setIsQuickViewOpen] = useState(false);
   // State Management
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -31,7 +35,7 @@ const ProductsPage = () => {
   const [fuzzySearchResults, setFuzzySearchResults] = useState([]);
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
-  const PRODUCTS_PER_PAGE = 30;
+  const PRODUCTS_PER_PAGE = 10;
 
   const navigate = useNavigate();
 
@@ -233,6 +237,19 @@ const ProductsPage = () => {
     );
   };
 
+  // Quick view open handler
+  const handleQuickViewOpen = (product) => {
+    setQuickViewProduct(product);
+    setIsQuickViewOpen(true);
+    // Prevent background scroll on mobile
+    document.body.style.overflow = 'hidden';
+  };
+  const handleQuickViewClose = () => {
+    setIsQuickViewOpen(false);
+    setTimeout(() => setQuickViewProduct(null), 200);
+    document.body.style.overflow = '';
+  };
+
   const renderProductGrid = () => {
     if (filteredProducts.length === 0) {
       return (
@@ -266,6 +283,7 @@ const ProductsPage = () => {
                 viewMode={viewMode}
                 onNavigate={handleNavigation}
                 showFuzzyScore={!!product.fuzzyScore}
+                onQuickView={() => handleQuickViewOpen(product)}
               />
             </div>
           ))}
@@ -307,8 +325,14 @@ const ProductsPage = () => {
         onSearchResults={handleFuzzySearchResults}
       />
 
+
       <main className="max-w-7xl mx-auto px-4 py-8">
         {renderProductGrid()}
+        <ProductQuickViewModal
+          product={quickViewProduct}
+          open={isQuickViewOpen}
+          onClose={handleQuickViewClose}
+        />
       </main>
 
       <style>{`

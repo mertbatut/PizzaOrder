@@ -1,22 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+
 const ProductCard = ({
   product,
   viewMode = 'grid',
   onNavigate,
   showFuzzyScore = false,
-  className = ''
+  className = '',
+  onQuickView
 }) => {
-  const handleCardClick = () => {
-    if (onNavigate) {
+  const handleCardClick = (e) => {
+    // On mobile: open quick view, on desktop: navigate
+    if (window.innerWidth < 1024 && onQuickView) {
+      e?.preventDefault?.();
+      onQuickView();
+    } else if (onNavigate) {
       onNavigate(`/product/${product.id}`);
     }
   };
 
   const handleButtonClick = (e) => {
     e.stopPropagation();
-    if (onNavigate) {
+    if (onQuickView) {
+      onQuickView();
+    } else if (onNavigate) {
       onNavigate(`/product/${product.id}`);
     }
   };
@@ -38,14 +46,14 @@ const ProductCard = ({
           ? 'flex flex-row items-center p-6 min-h-[140px]'
           : 'flex flex-col h-96'
         } ${className}`}
-      onClick={handleCardClick}
+  onClick={handleCardClick}
       data-testid="product-card"
       role="button"
       tabIndex={0}
       onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
-          handleCardClick();
+          handleCardClick(e);
         }
       }}
       aria-label={`${product.name} ürün detayına git`}
@@ -148,13 +156,13 @@ const ProductCard = ({
               </div>
             </div>
 
-            <button
-              className="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105 min-w-[120px] focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
-              onClick={handleButtonClick}
-              aria-label={`${product.name} sipariş ver`}
-            >
-              Sipariş Ver
-            </button>
+              <button
+                className="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105 min-w-[120px] focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+                onClick={handleButtonClick}
+                aria-label={`${product.name} sipariş ver`}
+              >
+                Sipariş Ver
+              </button>
           </div>
         ) : (
           <>
@@ -204,7 +212,8 @@ ProductCard.propTypes = {
   viewMode: PropTypes.oneOf(['grid', 'list']),
   onNavigate: PropTypes.func,
   showFuzzyScore: PropTypes.bool,
-  className: PropTypes.string
+  className: PropTypes.string,
+  onQuickView: PropTypes.func
 };
 
 export default ProductCard;
