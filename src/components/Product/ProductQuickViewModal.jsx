@@ -1,7 +1,8 @@
+
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ProductQuickViewModal = ({ product, open, onClose }) => {
+const ProductQuickViewModal = ({ product, open, onClose, onOrder }) => {
   if (!open || !product) return null;
 
   return (
@@ -38,7 +39,7 @@ const ProductQuickViewModal = ({ product, open, onClose }) => {
           </div>
           <button
             className="w-full bg-red-500 hover:bg-red-600 text-white font-semibold py-3 rounded-xl shadow-md transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
-            onClick={onClose}
+            onClick={() => onOrder(product)}
             aria-label="Sipariş Ver"
           >
             Sipariş Ver
@@ -59,7 +60,8 @@ const ProductQuickViewModal = ({ product, open, onClose }) => {
 ProductQuickViewModal.propTypes = {
   product: PropTypes.object,
   open: PropTypes.bool,
-  onClose: PropTypes.func
+  onClose: PropTypes.func,
+  onOrder: PropTypes.func
 };
 
 export default ProductQuickViewModal;

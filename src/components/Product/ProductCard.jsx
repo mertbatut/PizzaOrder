@@ -20,11 +20,16 @@ const ProductCard = ({
     }
   };
 
-  const handleButtonClick = (e) => {
+  const handlePreviewClick = (e) => {
     e.stopPropagation();
     if (onQuickView) {
       onQuickView();
-    } else if (onNavigate) {
+    }
+  };
+
+  const handleOrderClick = (e) => {
+    e.stopPropagation();
+    if (onNavigate) {
       onNavigate(`/product/${product.id}`);
     }
   };
@@ -157,8 +162,17 @@ const ProductCard = ({
             </div>
 
               <button
-                className="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105 min-w-[120px] focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
-                onClick={handleButtonClick}
+                className="border border-blue-400 text-blue-600 bg-white hover:bg-blue-50 hover:border-blue-500 flex items-center justify-center gap-1 px-3 py-2 rounded-xl font-semibold transition-all duration-200 shadow-sm min-w-[80px] text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 mr-2"
+                style={{lineHeight:1.2, height:'40px'}} // consistent height
+                onClick={handlePreviewClick}
+                aria-label={`${product.name} önizle`}
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="inline align-middle"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                <span className="hidden xs:inline">Önizle</span>
+              </button>
+              <button
+                className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105 min-w-[90px] focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+                onClick={handleOrderClick}
                 aria-label={`${product.name} sipariş ver`}
               >
                 Sipariş Ver
@@ -180,8 +194,26 @@ const ProductCard = ({
               </div>
 
               <button
+                className="border border-blue-400 text-blue-600 bg-white hover:bg-blue-50 hover:border-blue-500 flex items-center justify-center gap-1 px-3 py-2 text-sm rounded-xl font-semibold transition-all duration-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 mr-2"
+                style={{lineHeight:1.2, height:'36px'}}
+                onClick={handlePreviewClick}
+                aria-label={`${product.name} önizle`}
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="inline align-middle"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                <span className="hidden xs:inline">Önizle</span>
+              </button>
+      {/* Responsive: show label on >=375px, icon only on smaller */}
+      <style>{`
+        @media (max-width: 374px) {
+          .xs\\:inline { display: none !important; }
+        }
+        @media (min-width: 375px) {
+          .xs\\:inline { display: inline !important; }
+        }
+      `}</style>
+              <button
                 className="bg-red-500 hover:bg-red-600 text-white font-semibold transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105 px-4 py-2 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
-                onClick={handleButtonClick}
+                onClick={handleOrderClick}
                 aria-label={`${product.name} sipariş ver`}
               >
                 Sipariş Ver

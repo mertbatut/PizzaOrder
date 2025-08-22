@@ -100,16 +100,15 @@ const ProductsPage = () => {
     setFuzzySearchResults(results);
   }, []);
 
-  // Product filtering and sorting
+
   const filterAndSortProducts = useCallback(() => {
     let filtered = [...products];
 
-    // Apply fuzzy search results if available
+   
     if (fuzzySearchResults.length > 0) {
       filtered = [...fuzzySearchResults];
     }
 
-    // Apply category filter
     if (selectedCategory !== 'all') {
       filtered = filtered.filter(product => {
         const productCategories = product.category
@@ -119,7 +118,7 @@ const ProductsPage = () => {
       });
     }
 
-    // Apply sorting
+
     const sortedFiltered = filtered.sort((a, b) => {
       switch (sortBy) {
         case SORT_OPTIONS.PRICE_LOW:
@@ -140,10 +139,9 @@ const ProductsPage = () => {
     });
 
     setFilteredProducts(sortedFiltered);
-    setCurrentPage(1); // Reset to first page on filter/sort change
+    setCurrentPage(1); 
   }, [products, fuzzySearchResults, selectedCategory, sortBy]);
 
-  // Effects
   useEffect(() => {
     fetchProducts();
   }, [fetchProducts]);
@@ -152,7 +150,6 @@ const ProductsPage = () => {
     filterAndSortProducts();
   }, [filterAndSortProducts]);
 
-  // Event handlers
   const handleCategoryChange = useCallback((category) => {
     setSelectedCategory(category);
   }, []);
@@ -165,7 +162,6 @@ const ProductsPage = () => {
     setViewMode(mode);
   }, []);
 
-  // Render helpers
   const renderHeader = () => (
     <div className="bg-white shadow-sm border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-4 py-6">
@@ -332,6 +328,11 @@ const ProductsPage = () => {
           product={quickViewProduct}
           open={isQuickViewOpen}
           onClose={handleQuickViewClose}
+          onOrder={(product) => {
+            setIsQuickViewOpen(false);
+            setTimeout(() => setQuickViewProduct(null), 200);
+            navigate(`/product/${product.id}`);
+          }}
         />
       </main>
 
