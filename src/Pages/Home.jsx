@@ -3,57 +3,7 @@ import Header from '../components/Header';
 import HeroCarousel from '../components/HeroCarousel';
 import ProductList from '../components/Product/ProductList';
 import PromoCard from '../components/PromoCard';
-
-<ProductList />
-
-
-// Mock Footer component
-const Footer = () => (
-  <footer className="bg-gray-900 text-white py-16 animate-fadeInUp delay-600">
-    <div className="container mx-auto px-4">
-      <div className="grid md:grid-cols-4 gap-8">
-        <div>
-          <h3 className="text-2xl font-bold mb-4">Teknolojik Yemekler</h3>
-          <p className="text-gray-400">En lezzetli yemekleri teknolojik çözümlerle sunuyoruz.</p>
-        </div>
-        <div>
-          <h4 className="font-bold mb-4">Hızlı Linkler</h4>
-          <ul className="space-y-2 text-gray-400">
-            <li><a href="#" className="hover:text-white transition-colors">Ana Sayfa</a></li>
-            <li><a href="#" className="hover:text-white transition-colors">Menü</a></li>
-            <li><a href="#" className="hover:text-white transition-colors">Hakkımızda</a></li>
-            <li><a href="#" className="hover:text-white transition-colors">İletişim</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 className="font-bold mb-4">İletişim</h4>
-          <div className="space-y-2 text-gray-400">
-            <p>📞 +90 216 123 45 67</p>
-            <p>📧 aciktim@teknolojikyemekler.com</p>
-            <p>📍 İstanbul, Türkiye</p>
-          </div>
-        </div>
-        <div>
-          <h4 className="font-bold mb-4">Sosyal Medya</h4>
-          <div className="flex space-x-4">
-            <button className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors">
-              <span>f</span>
-            </button>
-            <button className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors">
-              <span>t</span>
-            </button>
-            <button className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors">
-              <span>i</span>
-            </button>
-          </div>
-        </div>
-      </div>
-      <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-        <p>&copy; 2023 Teknolojik Yemekler. Tüm hakları saklıdır.</p>
-      </div>
-    </div>
-  </footer>
-);
+import Footer from '../components/Footer';
 
 export default function Home() {
   const navigateToPizzaMenu = () => {
@@ -64,10 +14,10 @@ export default function Home() {
     <div className="min-h-screen bg-gray-50">
       {/* Header Component */}
       <Header />
-      
+
       {/* Hero Carousel Component */}
       <HeroCarousel />
-      
+
       {/* İkon Menü Bölümü */}
       <div className='IconSection bg-white py-12 shadow-lg animate-fadeInUp delay-200'>
         <div className="container mx-auto px-4">
@@ -80,7 +30,7 @@ export default function Home() {
               { name: 'Fast Food', icon: '🌭' },
               { name: 'Gazlı İçecek', icon: '🥤' }
             ].map((item, index) => (
-              <li key={item.name} className='flex items-center gap-3 hover:scale-105 transition-transform duration-200 animate-fadeInUp' style={{animationDelay: `${0.3 + index * 0.1}s`}}>
+              <li key={item.name} className='flex items-center gap-3 hover:scale-105 transition-transform duration-200 animate-fadeInUp' style={{ animationDelay: `${0.3 + index * 0.1}s` }}>
                 <button
                   onClick={navigateToPizzaMenu}
                   className="text-gray-700 hover:text-red-600 transition-colors font-medium text-sm md:text-base"
@@ -93,13 +43,16 @@ export default function Home() {
           </ul>
         </div>
       </div>
-      
-     <PromoCard/>
-      
-      {/* En Çok Satan Bölümü */}
-      <div className='CokSatan bg-white py-16 animate-fadeInUp delay-500'>
+
+      {/* Promo Cards */}
+      <PromoCard />
+
+
+
+
+      <div className='ProductSection bg-white py-12 lg:py-16 animate-fadeInUp delay-500'>
         <div className="container mx-auto px-4">
-          <div className='text-center mb-12 animate-fadeInUp delay-600'>
+          <div className='text-center mb-8 lg:mb-12 animate-fadeInUp delay-600'>
             <p className='text-2xl lg:text-3xl font-normal text-red-600 mb-2'>
               en çok paketlenen menüler
             </p>
@@ -107,42 +60,45 @@ export default function Home() {
               Acıktıran Kodlara Doyuran Lezzetler
             </p>
           </div>
-          
-          <div className='flex flex-wrap gap-4 lg:gap-6 justify-center py-8 mb-12'>
+
+          {/* Ürün Kategorileri - Filtreleme için */}
+          <div className='flex flex-wrap gap-3 lg:gap-4 justify-center py-6 lg:py-8 mb-8 lg:mb-12'>
             {[
-              { name: 'Ramen', img: '' },
-              { name: 'Pizza', img: '' },
-              { name: 'Burger', img: '' },
-              { name: 'Patates', img: '' },
-              { name: 'Fast Food', img: '' },
-              { name: 'İçecekler', img: '' }
+              { name: 'Ramen', img: '', color: 'bg-orange-100 hover:bg-orange-200 text-orange-700' },
+              { name: 'Pizza', img: '', color: 'bg-red-100 hover:bg-red-200 text-red-700' },
+              { name: 'Burger', img: '', color: 'bg-yellow-100 hover:bg-yellow-200 text-yellow-700' },
+              { name: 'Patates', img: '', color: 'bg-amber-100 hover:bg-amber-200 text-amber-700' },
+              { name: 'Fast Food', img: '', color: 'bg-green-100 hover:bg-green-200 text-green-700' },
+              { name: 'İçecekler', img: '', color: 'bg-blue-100 hover:bg-blue-200 text-blue-700' }
             ].map((item, index) => (
-              <button 
+              <button
                 key={item.name}
-                onClick={navigateToPizzaMenu} 
-                className='w-[160px] lg:w-[180px] h-[60px] lg:h-[70px] rounded-full bg-white border-2 border-gray-200 hover:border-red-400 flex justify-center items-center shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 gap-3 animate-fadeInUp'
-                style={{animationDelay: `${0.7 + index * 0.1}s`}}
+                onClick={navigateToPizzaMenu}
+                className={`px-4 lg:px-6 py-2 lg:py-3 rounded-full border-2 border-transparent hover:border-current flex items-center shadow-sm hover:shadow-md hover:scale-105 transition-all duration-300 gap-2 animate-fadeInUp ${item.color}`}
+                style={{ animationDelay: `${0.7 + index * 0.1}s` }}
               >
-                <img 
-                  src={item.img} 
-                  alt={item.name} 
-                  className="w-8 h-8 lg:w-10 lg:h-10 rounded-full object-cover"
-                />
-                <span className="font-medium text-sm lg:text-base text-gray-700">{item.name}</span>
+                {item.img && (
+                  <img
+                    src={item.img}
+                    alt={item.name}
+                    className="w-6 h-6 lg:w-8 lg:h-8 rounded-full object-cover"
+                  />
+                )}
+                <span className="font-medium text-sm lg:text-base">{item.name}</span>
               </button>
             ))}
           </div>
 
-          {/* Ürün Listesi */}
+
           <ProductList />
         </div>
       </div>
-      
+
       {/* Footer */}
       <Footer />
 
       {/* CSS Animations */}
-  <style>{`
+      <style>{`
         @keyframes fadeInUp {
           from {
             opacity: 0;

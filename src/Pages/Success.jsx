@@ -4,8 +4,15 @@ import { useLocation, Link } from 'react-router-dom';
 export default function Success() {
   const location = useLocation();
   
-  // v6'da location.state şeklinde erişilir
-  const { selectedItems, selectedSize, selectedDough, total, orderData } = location.state || {};
+  // location.state'den gelen veriler
+  const { 
+    selectedItems, 
+    selectedSize, 
+    selectedDough, 
+    total, 
+    orderData, 
+    product 
+  } = location.state || {};
 
   return (
     <>
@@ -14,9 +21,20 @@ export default function Success() {
         <p className="text-4xl mb-2 font-Satisfy font-normal text-[#FDC913]">lezzetin yolda</p>
         <p className='text-[86px] text-[#FFFFFF] font-Condensed font-light'>SİPARİŞİNİZ ALINDI</p>
         <hr className='w-[581px]' />
-        <p className='font-semibold text-[22px] text-[#FFFFFF]'>Position Absolute Acı Pizza</p>
+        
+        {/* Dinamik ürün adı */}
+        <p className='font-semibold text-[22px] text-[#FFFFFF]'>
+          {product?.name || 'Position Absolute Acı Pizza'}
+        </p>
         
         <div className='h-auto w-[400px] text-center space-y-3'>
+          {/* Ürün kategorisi */}
+          {product?.category && (
+            <p className='text-base font-normal font-Barlow text-[#FFFFFF]'>
+              <span className='font-semibold'>Kategori:</span> {product.category}
+            </p>
+          )}
+          
           {selectedSize && (
             <p className='text-base font-normal font-Barlow text-[#FFFFFF]'>
               <span className='font-semibold'>Boyut:</span> {selectedSize}
@@ -35,25 +53,54 @@ export default function Success() {
             </p>
           )}
           
+          {/* Adet bilgisi */}
+          {orderData?.adet && (
+            <p className='text-base font-normal font-Barlow text-[#FFFFFF]'>
+              <span className='font-semibold'>Adet:</span> {orderData.adet}
+            </p>
+          )}
+          
+          {/* Özel not */}
+          {orderData?.ozel && (
+            <p className='text-base font-normal font-Barlow text-[#FFFFFF]'>
+              <span className='font-semibold'>Özel Not:</span> {orderData.ozel}
+            </p>
+          )}
+          
           {total && (
             <p className='text-lg font-bold font-Barlow text-[#FDC913] mt-4'>
-              <span className='font-semibold'>Toplam Tutar:</span> {total}₺
+              <span className='font-semibold'>Toplam Tutar:</span> {total.toFixed(2)}₺
             </p>
           )}
 
-          {orderData && orderData.id && (
+          {orderData?.tarih && (
             <p className='text-sm font-normal font-Barlow text-[#FFFFFF] mt-4'>
-              <span className='font-semibold'>Sipariş ID:</span> {orderData.id}
+              <span className='font-semibold'>Sipariş Tarihi:</span> {new Date(orderData.tarih).toLocaleString('tr-TR')}
+            </p>
+          )}
+
+          {/* Sipariş ID simülasyonu */}
+          {orderData && (
+            <p className='text-sm font-normal font-Barlow text-[#FFFFFF] mt-4'>
+              <span className='font-semibold'>Sipariş ID:</span> TY-{Math.floor(Math.random() * 10000).toString().padStart(4, '0')}
             </p>
           )}
         </div>
         
-        <div className='mt-8'>
+        <div className='mt-8 flex flex-col items-center gap-4'>
           <Link 
             to="/" 
             className='bg-[#FDC913] text-[#292929] px-8 py-3 rounded-lg font-semibold hover:bg-yellow-400 transition-colors inline-block'
           >
             Ana Sayfaya Dön
+          </Link>
+          
+          {/* Yeni sipariş butonu */}
+          <Link 
+            to="/PizzaMenu" 
+            className='bg-white/20 text-white border-2 border-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-[#CE2829] transition-colors inline-block'
+          >
+            Yeni Sipariş Ver
           </Link>
         </div>
       </div>
