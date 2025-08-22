@@ -29,6 +29,9 @@ const ProductsPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [fuzzySearchResults, setFuzzySearchResults] = useState([]);
+  // Pagination state
+  const [currentPage, setCurrentPage] = useState(1);
+  const PRODUCTS_PER_PAGE = 30;
 
   const navigate = useNavigate();
 
@@ -117,19 +120,15 @@ const ProductsPage = () => {
       switch (sortBy) {
         case SORT_OPTIONS.PRICE_LOW:
           return parseFloat(a.price) - parseFloat(b.price);
-        
         case SORT_OPTIONS.PRICE_HIGH:
           return parseFloat(b.price) - parseFloat(a.price);
-        
         case SORT_OPTIONS.RATING:
           return parseFloat(b.rating) - parseFloat(a.rating);
-        
         case SORT_OPTIONS.RELEVANCE:
           if (a.fuzzyScore !== undefined && b.fuzzyScore !== undefined) {
             return b.fuzzyScore - a.fuzzyScore;
           }
           return a.name.localeCompare(b.name);
-        
         case SORT_OPTIONS.NAME:
         default:
           return a.name.localeCompare(b.name);
@@ -137,6 +136,7 @@ const ProductsPage = () => {
     });
 
     setFilteredProducts(sortedFiltered);
+    setCurrentPage(1); // Reset to first page on filter/sort change
   }, [products, fuzzySearchResults, selectedCategory, sortBy]);
 
   // Effects
@@ -184,6 +184,55 @@ const ProductsPage = () => {
     </div>
   );
 
+  // Pagination logic
+  const totalPages = Math.ceil(filteredProducts.length / PRODUCTS_PER_PAGE);
+  const paginatedProducts = filteredProducts.slice(
+    (currentPage - 1) * PRODUCTS_PER_PAGE,
+    currentPage * PRODUCTS_PER_PAGE
+  );
+
+  const handlePageChange = (page) => {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
+  const renderPagination = () => {
+    if (totalPages <= 1) return null;
+    const pageNumbers = [];
+    for (let i = 1; i <= totalPages; i++) {
+      pageNumbers.push(i);
+    }
+    return (
+      <div className="flex justify-center items-center mt-8 gap-2">
+        <button
+          onClick={() => handlePageChange(currentPage - 1)}
+          disabled={currentPage === 1}
+          className="px-3 py-1 rounded bg-gray-200 hover:bg-gray-300 disabled:opacity-50"
+        >
+          Önceki
+        </button>
+        {pageNumbers.map((num) => (
+          <button
+            key={num}
+            onClick={() => handlePageChange(num)}
+            className={`px-3 py-1 rounded ${num === currentPage ? 'bg-red-500 text-white' : 'bg-gray-200 hover:bg-gray-300'}`}
+          >
+            {num}
+          </button>
+        ))}
+        <button
+          onClick={() => handlePageChange(currentPage + 1)}
+          disabled={currentPage === totalPages}
+          className="px-3 py-1 rounded bg-gray-200 hover:bg-gray-300 disabled:opacity-50"
+        >
+          Sonraki
+        </button>
+      </div>
+    );
+  };
+
   const renderProductGrid = () => {
     if (filteredProducts.length === 0) {
       return (
@@ -201,25 +250,28 @@ const ProductsPage = () => {
       : 'flex flex-col space-y-4';
 
     return (
-      <div className={gridClasses}>
-        {filteredProducts.map((product, index) => (
-          <div
-            key={product.id}
-            className="opacity-0 animate-fadeInUp"
-            style={{ 
-              animationDelay: `${index * 0.1}s`, 
-              animationFillMode: 'forwards' 
-            }}
-          >
-            <ProductCard
-              product={product}
-              viewMode={viewMode}
-              onNavigate={handleNavigation}
-              showFuzzyScore={!!product.fuzzyScore}
-            />
-          </div>
-        ))}
-      </div>
+      <>
+        <div className={gridClasses}>
+          {paginatedProducts.map((product, index) => (
+            <div
+              key={product.id}
+              className="opacity-0 animate-fadeInUp"
+              style={{ 
+                animationDelay: `${index * 0.1}s`, 
+                animationFillMode: 'forwards' 
+              }}
+            >
+              <ProductCard
+                product={product}
+                viewMode={viewMode}
+                onNavigate={handleNavigation}
+                showFuzzyScore={!!product.fuzzyScore}
+              />
+            </div>
+          ))}
+        </div>
+        {renderPagination()}
+      </>
     );
   };
 

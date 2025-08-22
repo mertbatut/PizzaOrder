@@ -33,7 +33,7 @@ export const useProductSearch = (products = [], initialThreshold = 0.6) => {
     const commonTerms = [
       'Pizza', 'Burger', 'Tavuk', 'Acı', 'Peynirli', 'BBQ', 
       'Vegetarian', 'Spicy', 'Cheese', 'Creamy', 'Terminal', 
-      'Position', 'Absolute', 'useEffect', 'Hackathlon', 'useState'
+      'Position', 'Absolute', 'useEffect', 'Hackathlon', 'useState' , 'Pide' , 'Kebap', 'Lahmacun', 'Salata', 'Tatlı', 'İçecek', 'Makarna', 'Sos', 'Izgara', 'Dürüm', 'Meze', 'Çorba', 'Balık', 'Deniz Ürünleri', 'Vejetaryen', 'Vegan', 'Glutensiz '
     ];
     commonTerms.forEach(term => terms.add(term));
     const arr = Array.from(terms);
