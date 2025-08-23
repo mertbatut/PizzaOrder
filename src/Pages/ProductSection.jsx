@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef , useEffectd } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import OrderOption from '../components/OrderOption';
@@ -15,6 +15,7 @@ const ProductSection = () => {
     specialNotes: '',
     quantity: 1
   });
+  
   
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
@@ -136,6 +137,10 @@ const ProductSection = () => {
            formData.selectedItems.length >= 4 &&
            formData.selectedItems.length <= 10;
   };
+
+  useEffect(() => {
+  window.scrollTo(0, 0);
+}, []);
 
   return (
     <div className="min-h-screen bg-[#FAF7F2] flex flex-col">

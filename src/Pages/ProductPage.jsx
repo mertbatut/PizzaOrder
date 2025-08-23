@@ -1,11 +1,11 @@
+// ProductPage.jsx - Ana sayfa, sadece state yönetimi ve layout
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ProductSearch from '../components/ProductSearch/ProductSearch';
+import ProductList from '../components/Product/ProductList';
+import ProductQuickViewModal from '../components/Product/ProductQuickViewModal';
 import LoadingSpinner from '../components/UI/LoadingSpinner';
 import ErrorMessage from '../components/UI/ErrorMessage';
-import EmptyState from '../components/UI/EmptyState';
-import ProductCard from '../components/Product/ProductCard';
-import ProductQuickViewModal from '../components/Product/ProductQuickViewModal';
 
 const SORT_OPTIONS = {
   NAME: 'name',
@@ -21,9 +21,6 @@ const VIEW_MODES = {
 };
 
 const ProductsPage = () => {
-  // Quick view modal state
-  const [quickViewProduct, setQuickViewProduct] = useState(null);
-  const [isQuickViewOpen, setIsQuickViewOpen] = useState(false);
   // State Management
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -33,9 +30,14 @@ const ProductsPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [fuzzySearchResults, setFuzzySearchResults] = useState([]);
+  
+  // Quick view modal state
+  const [quickViewProduct, setQuickViewProduct] = useState(null);
+  const [isQuickViewOpen, setIsQuickViewOpen] = useState(false);
+
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
-  const PRODUCTS_PER_PAGE = 10;
+  const PRODUCTS_PER_PAGE = 12;
 
   const navigate = useNavigate();
 
@@ -95,20 +97,16 @@ const ProductsPage = () => {
     }
   }, []);
 
-  // Fuzzy search results handler
-  const handleFuzzySearchResults = useCallback((results) => {
-    setFuzzySearchResults(results);
-  }, []);
-
-
+  // Filter and sort products
   const filterAndSortProducts = useCallback(() => {
     let filtered = [...products];
 
-   
+    // Apply fuzzy search results if available
     if (fuzzySearchResults.length > 0) {
       filtered = [...fuzzySearchResults];
     }
 
+    // Apply category filter
     if (selectedCategory !== 'all') {
       filtered = filtered.filter(product => {
         const productCategories = product.category
@@ -118,7 +116,7 @@ const ProductsPage = () => {
       });
     }
 
-
+    // Apply sorting
     const sortedFiltered = filtered.sort((a, b) => {
       switch (sortBy) {
         case SORT_OPTIONS.PRICE_LOW:
@@ -139,9 +137,10 @@ const ProductsPage = () => {
     });
 
     setFilteredProducts(sortedFiltered);
-    setCurrentPage(1); 
+    setCurrentPage(1);
   }, [products, fuzzySearchResults, selectedCategory, sortBy]);
 
+  // Effects
   useEffect(() => {
     fetchProducts();
   }, [fetchProducts]);
@@ -150,6 +149,7 @@ const ProductsPage = () => {
     filterAndSortProducts();
   }, [filterAndSortProducts]);
 
+  // Event handlers
   const handleCategoryChange = useCallback((category) => {
     setSelectedCategory(category);
   }, []);
@@ -162,6 +162,45 @@ const ProductsPage = () => {
     setViewMode(mode);
   }, []);
 
+  const handleFuzzySearchResults = useCallback((results) => {
+    setFuzzySearchResults(results);
+  }, []);
+
+  // Quick view handlers
+  const handleQuickViewOpen = useCallback((product) => {
+    setQuickViewProduct(product);
+    setIsQuickViewOpen(true);
+    document.body.style.overflow = 'hidden';
+  }, []);
+
+  const handleQuickViewClose = useCallback(() => {
+    setIsQuickViewOpen(false);
+    setTimeout(() => setQuickViewProduct(null), 200);
+    document.body.style.overflow = '';
+  }, []);
+
+  const handleQuickViewOrder = useCallback((product) => {
+    setIsQuickViewOpen(false);
+    setTimeout(() => setQuickViewProduct(null), 200);
+    document.body.style.overflow = '';
+    navigate(`/product/${product.id}`);
+  }, [navigate]);
+
+  // Pagination logic
+  const totalPages = Math.ceil(filteredProducts.length / PRODUCTS_PER_PAGE);
+  const paginatedProducts = filteredProducts.slice(
+    (currentPage - 1) * PRODUCTS_PER_PAGE,
+    currentPage * PRODUCTS_PER_PAGE
+  );
+
+  const handlePageChange = useCallback((page) => {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [totalPages]);
+
+  // Render functions
   const renderHeader = () => (
     <div className="bg-white shadow-sm border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-4 py-6">
@@ -184,32 +223,20 @@ const ProductsPage = () => {
     </div>
   );
 
-  // Pagination logic
-  const totalPages = Math.ceil(filteredProducts.length / PRODUCTS_PER_PAGE);
-  const paginatedProducts = filteredProducts.slice(
-    (currentPage - 1) * PRODUCTS_PER_PAGE,
-    currentPage * PRODUCTS_PER_PAGE
-  );
-
-  const handlePageChange = (page) => {
-    if (page >= 1 && page <= totalPages) {
-      setCurrentPage(page);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  };
-
   const renderPagination = () => {
     if (totalPages <= 1) return null;
+    
     const pageNumbers = [];
     for (let i = 1; i <= totalPages; i++) {
       pageNumbers.push(i);
     }
+    
     return (
       <div className="flex justify-center items-center mt-8 gap-2">
         <button
           onClick={() => handlePageChange(currentPage - 1)}
           disabled={currentPage === 1}
-          className="px-3 py-1 rounded bg-gray-200 hover:bg-gray-300 disabled:opacity-50"
+          className="px-3 py-1 rounded bg-gray-200 hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           Önceki
         </button>
@@ -217,7 +244,11 @@ const ProductsPage = () => {
           <button
             key={num}
             onClick={() => handlePageChange(num)}
-            className={`px-3 py-1 rounded ${num === currentPage ? 'bg-red-500 text-white' : 'bg-gray-200 hover:bg-gray-300'}`}
+            className={`px-3 py-1 rounded transition-colors ${
+              num === currentPage 
+                ? 'bg-red-500 text-white' 
+                : 'bg-gray-200 hover:bg-gray-300'
+            }`}
           >
             {num}
           </button>
@@ -225,7 +256,7 @@ const ProductsPage = () => {
         <button
           onClick={() => handlePageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
-          className="px-3 py-1 rounded bg-gray-200 hover:bg-gray-300 disabled:opacity-50"
+          className="px-3 py-1 rounded bg-gray-200 hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           Sonraki
         </button>
@@ -233,63 +264,7 @@ const ProductsPage = () => {
     );
   };
 
-  // Quick view open handler
-  const handleQuickViewOpen = (product) => {
-    setQuickViewProduct(product);
-    setIsQuickViewOpen(true);
-    // Prevent background scroll on mobile
-    document.body.style.overflow = 'hidden';
-  };
-  const handleQuickViewClose = () => {
-    setIsQuickViewOpen(false);
-    setTimeout(() => setQuickViewProduct(null), 200);
-    document.body.style.overflow = '';
-  };
-
-  const renderProductGrid = () => {
-    if (filteredProducts.length === 0) {
-      return (
-        <EmptyState
-          icon="🔍"
-          title="Ürün bulunamadı"
-          description="Arama kriterlerinizi değiştirmeyi deneyin."
-          showFuzzySearchTip={fuzzySearchResults.length === 0}
-        />
-      );
-    }
-
-    const gridClasses = viewMode === VIEW_MODES.GRID
-      ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'
-      : 'flex flex-col space-y-4';
-
-    return (
-      <>
-        <div className={gridClasses}>
-          {paginatedProducts.map((product, index) => (
-            <div
-              key={product.id}
-              className="opacity-0 animate-fadeInUp"
-              style={{ 
-                animationDelay: `${index * 0.1}s`, 
-                animationFillMode: 'forwards' 
-              }}
-            >
-              <ProductCard
-                product={product}
-                viewMode={viewMode}
-                onNavigate={handleNavigation}
-                showFuzzyScore={!!product.fuzzyScore}
-                onQuickView={() => handleQuickViewOpen(product)}
-              />
-            </div>
-          ))}
-        </div>
-        {renderPagination()}
-      </>
-    );
-  };
-
-  // Main render
+  // Main render conditions
   if (loading) {
     return <LoadingSpinner message="Ürünler yükleniyor..." />;
   }
@@ -321,38 +296,33 @@ const ProductsPage = () => {
         onSearchResults={handleFuzzySearchResults}
       />
 
-
       <main className="max-w-7xl mx-auto px-4 py-8">
-        {renderProductGrid()}
+        {/* ProductList Component Usage */}
+        <ProductList
+          products={paginatedProducts}
+          viewMode={viewMode}
+          showFuzzyScore={!!fuzzySearchResults.length}
+          onNavigate={handleNavigation}
+          onQuickView={handleQuickViewOpen}
+          loading={false}
+          emptyMessage={
+            fuzzySearchResults.length === 0 && filteredProducts.length === 0
+              ? "Arama kriterlerinize uygun ürün bulunamadı"
+              : "Ürün bulunamadı"
+          }
+        />
+
+        {/* Pagination */}
+        {renderPagination()}
+
+        {/* Quick View Modal */}
         <ProductQuickViewModal
           product={quickViewProduct}
           open={isQuickViewOpen}
           onClose={handleQuickViewClose}
-          onOrder={(product) => {
-            setIsQuickViewOpen(false);
-            setTimeout(() => setQuickViewProduct(null), 200);
-            navigate(`/product/${product.id}`);
-          }}
+          onOrder={handleQuickViewOrder}
         />
       </main>
-
-      <style>{`
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        
-        .animate-fadeInUp {
-          animation: fadeInUp 0.6s ease-out forwards;
-          opacity: 0;
-        }
-      `}</style>
     </div>
   );
 };
