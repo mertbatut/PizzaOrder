@@ -123,12 +123,21 @@ const Header = () => {
                 )}
               </button>
 
-              {/* Enhanced Mini Cart Dropdown */}
+              {/* Responsive Cart Modal/Dropdown */}
               {isCartOpen && (
-                <div className="absolute right-0 top-full mt-3 w-96 bg-white rounded-2xl shadow-2xl border border-gray-100 z-50 overflow-hidden animate-fadeInUp">
-                  {/* Header */}
-                  <div className="bg-gradient-to-r from-red-50 to-red-100 p-4 border-b border-red-200">
-                    <div className="flex items-center justify-between">
+                <>
+                  {/* Backdrop for mobile */}
+                  <div
+                    className="fixed inset-0 bg-black bg-opacity-40 z-40 lg:hidden"
+                    onClick={toggleCart}
+                  />
+                  {/* Cart Modal (mobile) / Dropdown (desktop) */}
+                  <div
+                    className="fixed lg:absolute right-0 top-0 lg:top-full lg:mt-3 w-full h-full lg:w-96 lg:h-auto bg-white rounded-none lg:rounded-2xl shadow-2xl border border-gray-100 z-50 overflow-hidden animate-fadeInUp flex flex-col"
+                    style={{ maxWidth: '100vw', maxHeight: '100vh' }}
+                  >
+                    {/* Header */}
+                    <div className="bg-gradient-to-r from-red-50 to-red-100 p-4 border-b border-red-200 flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         <div className="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center">
                           <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -149,65 +158,65 @@ const Header = () => {
                         </svg>
                       </button>
                     </div>
-                  </div>
 
-                  {cartItems.length === 0 ? (
-                    <div className="text-center py-12">
-                      <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13" />
-                        </svg>
-                      </div>
-                      <p className="text-gray-500 font-medium">Sepetiniz boş</p>
-                      <p className="text-gray-400 text-sm mt-1">Lezzetli ürünlerimizi keşfedin!</p>
-                    </div>
-                  ) : (
-                    <>
-                      <div className="max-h-80 overflow-y-auto">
-                        {cartItems.map((item, index) => (
-                          <div key={item.id} className={`flex items-center gap-4 p-4 ${index !== cartItems.length - 1 ? 'border-b border-gray-100' : ''} hover:bg-gray-50 transition-colors`}>
-                            <div className="w-16 h-16 bg-gray-100 rounded-xl overflow-hidden flex-shrink-0">
-                              <img
-                                src={item.image}
-                                alt={item.name}
-                                className="w-full h-full object-cover"
-                                onError={(e) => { e.target.src = '/images/pizzaresim.png'; }}
-                              />
-                            </div>
-                            <div className="flex-1 min-w-0">
-                              <h4 className="font-semibold text-gray-900 truncate text-sm">{item.name}</h4>
-                              <p className="text-xs text-gray-500 truncate">{item.category}</p>
-                              <div className="flex items-center gap-2 mt-1">
-                                <span className="text-sm font-bold text-red-600">{item.price}₺</span>
-                                <span className="text-xs text-gray-400">×{item.quantity}</span>
-                              </div>
-                            </div>
-                            <div className="text-right">
-                              <div className="text-sm font-bold text-gray-900">
-                                {(item.price * item.quantity).toFixed(2)}₺
-                              </div>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-
-                      <div className="bg-gray-50 p-4 border-t border-gray-200">
-                        <div className="flex justify-between items-center mb-4">
-                          <span className="text-gray-700 font-medium">Toplam:</span>
-                          <span className="text-2xl font-bold text-red-600">
-                            {getTotalPrice().toFixed(2)}₺
-                          </span>
+                    {cartItems.length === 0 ? (
+                      <div className="flex-1 flex flex-col items-center justify-center py-12">
+                        <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                          <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13" />
+                          </svg>
                         </div>
-                        <button
-                          onClick={handleCheckout}
-                          className="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white py-3 px-6 rounded-xl font-bold transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-[1.02]"
-                        >
-                          Sepeti Görüntüle & Siparişi Tamamla
-                        </button>
+                        <p className="text-gray-500 font-medium">Sepetiniz boş</p>
+                        <p className="text-gray-400 text-sm mt-1">Lezzetli ürünlerimizi keşfedin!</p>
                       </div>
-                    </>
-                  )}
-                </div>
+                    ) : (
+                      <>
+                        <div className="flex-1 max-h-80 lg:max-h-80 overflow-y-auto">
+                          {cartItems.map((item, index) => (
+                            <div key={item.id} className={`flex items-center gap-4 p-4 ${index !== cartItems.length - 1 ? 'border-b border-gray-100' : ''} hover:bg-gray-50 transition-colors`}>
+                              <div className="w-16 h-16 bg-gray-100 rounded-xl overflow-hidden flex-shrink-0">
+                                <img
+                                  src={item.image}
+                                  alt={item.name}
+                                  className="w-full h-full object-cover"
+                                  onError={(e) => { e.target.src = '/images/pizzaresim.png'; }}
+                                />
+                              </div>
+                              <div className="flex-1 min-w-0">
+                                <h4 className="font-semibold text-gray-900 truncate text-sm">{item.name}</h4>
+                                <p className="text-xs text-gray-500 truncate">{item.category}</p>
+                                <div className="flex items-center gap-2 mt-1">
+                                  <span className="text-sm font-bold text-red-600">{item.price}₺</span>
+                                  <span className="text-xs text-gray-400">×{item.quantity}</span>
+                                </div>
+                              </div>
+                              <div className="text-right">
+                                <div className="text-sm font-bold text-gray-900">
+                                  {(item.price * item.quantity).toFixed(2)}₺
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+
+                        <div className="bg-gray-50 p-4 border-t border-gray-200">
+                          <div className="flex justify-between items-center mb-4">
+                            <span className="text-gray-700 font-medium">Toplam:</span>
+                            <span className="text-2xl font-bold text-red-600">
+                              {getTotalPrice().toFixed(2)}₺
+                            </span>
+                          </div>
+                          <button
+                            onClick={handleCheckout}
+                            className="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white py-3 px-6 rounded-xl font-bold transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-[1.02]"
+                          >
+                            Sepeti Görüntüle & Siparişi Tamamla
+                          </button>
+                        </div>
+                      </>
+                    )}
+                  </div>
+                </>
               )}
             </div>
 
