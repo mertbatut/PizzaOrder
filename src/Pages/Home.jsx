@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import HeroCarousel from '../components/HeroCarousel';
 import ProductList from '../components/Product/ProductList';
-import ProductQuickViewModal from '../components/Product/ProductQuickViewModal'; // Modal eklendi!
+import ProductQuickViewModal from '../components/UI/ProductQuickViewModal'; // Modal eklendi!
 import PromoCard from '../components/PromoCard';
 import Footer from '../components/Footer';
 

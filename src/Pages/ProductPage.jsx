@@ -3,7 +3,7 @@ import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ProductSearch from '../components/ProductSearch/ProductSearch';
 import ProductList from '../components/Product/ProductList';
-import ProductQuickViewModal from '../components/Product/ProductQuickViewModal';
+import ProductQuickViewModal from '../components/UI/ProductQuickViewModal';
 import LoadingSpinner from '../components/UI/LoadingSpinner';
 import ErrorMessage from '../components/UI/ErrorMessage';
 

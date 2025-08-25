@@ -12,7 +12,7 @@ export const CartProvider = ({ children }) => {
       console.log('📊 Sepet özeti:', {
         toplamUrun: cartItems.length,
         toplamAdet: cartItems.reduce((sum, item) => sum + item.quantity, 0),
-        toplamTutar: cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0).toFixed(2) + '₺'
+        toplamTutar: cartItems.reduce((sum, item) => sum + (parseFloat(item.price) * item.quantity), 0).toFixed(2) + '₺'
       });
     }
   }, [cartItems]);
@@ -28,7 +28,11 @@ export const CartProvider = ({ children }) => {
       ));
       console.log('✅ Ürün miktarı artırıldı:', product.name);
     } else {
-      setCartItems([...cartItems, { ...product, quantity: 1 }]);
+      setCartItems([...cartItems, { 
+        ...product, 
+        quantity: 1,
+        price: parseFloat(product.price) // String'den number'a çevir
+      }]);
       console.log('✅ Yeni ürün sepete eklendi:', product.name);
     }
   };
@@ -59,7 +63,7 @@ export const CartProvider = ({ children }) => {
   };
 
   const getTotalPrice = () => {
-    return cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    return cartItems.reduce((sum, item) => sum + (parseFloat(item.price) * item.quantity), 0);
   };
 
   const getTotalItems = () => {
