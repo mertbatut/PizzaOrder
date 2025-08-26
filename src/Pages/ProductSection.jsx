@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
-import Header from '../components/Header';
+import Header from '../components/Layout/Header';
 import CartSpinner from '../components/UI/CartSpinner';
 import CartSuccessPopup from '../components/UI/CartSuccessPopup';
 import HeartExplosion from '../components/UI/HeartExplosion';

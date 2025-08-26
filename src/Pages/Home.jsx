@@ -1,12 +1,12 @@
 // Home.jsx - Artık ProductsPage ile aynı davranış
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Header from '../components/Header';
-import HeroCarousel from '../components/HeroCarousel';
+import Header from '../components/Layout/Header';
+import HeroCarousel from '../components/Common/HeroCarousel';
 import ProductList from '../components/Product/ProductList';
 import ProductQuickViewModal from '../components/UI/ProductQuickViewModal'; // Modal eklendi!
-import PromoCard from '../components/PromoCard';
-import Footer from '../components/Footer';
+import PromoCard from '../components/Common/PromoCard';
+import Footer from '../components/Layout/Footer';
 
 export default function Home() {
   const [products, setProducts] = useState([]);

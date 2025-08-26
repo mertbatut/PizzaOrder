@@ -1,7 +1,7 @@
 // ShoppingCart.js
 import React, { useState } from 'react';
-import { useCart } from '../context/CartContext';
-import { simulateCheckout } from '../services/CheckoutService';
+import { useCart } from '../../context/CartContext';
+import { simulateCheckout } from '../../context/CheckoutService';
 
 const ShoppingCart = () => {
   const { cartItems, removeFromCart, updateQuantity, clearCart, getTotalPrice } = useCart();
