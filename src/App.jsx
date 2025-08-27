@@ -13,26 +13,37 @@ import ProductsPage from './Pages/ProductPage';
 
 function App() {
   return (
-    <AuthProvider>
-      <CartProvider>
-        <BrowserRouter>
-          <Header />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/product/:id" element={<ProductSection />} />
-            <Route path="/PizzaMenu" element={<ProductSection />} />
-            <Route path="/products" element={<ProductsPage/>} />
-            <Route path="/checkout" element={<ShoppingCart />} />
-            <Route path="/success" element={<Success />} />
-            <Route path="/auth/login" element={<LoginPage />} />
-            <Route path="/auth/register" element={<RegisterPage />} />
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
-  {/* Invisible reCAPTCHA için container (MFA SMS kullanır) */}
-  <div id="recaptcha-container" style={{ display: 'none' }} />
-  </BrowserRouter>
-      </CartProvider>
-    </AuthProvider>
+    <>
+      <AuthProvider>
+        <CartProvider>
+          <BrowserRouter>
+            <Header />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/product/:id" element={<ProductSection />} />
+              <Route path="/PizzaMenu" element={<ProductSection />} />
+              <Route path="/products" element={<ProductsPage/>} />
+              <Route path="/checkout" element={<ShoppingCart />} />
+              <Route path="/success" element={<Success />} />
+              <Route path="/auth/login" element={<LoginPage />} />
+              <Route path="/auth/register" element={<RegisterPage />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+            {/* reCAPTCHA için container: geliştirmede görünür, prod'da gizli */}
+            <div
+              id="recaptcha-container"
+              style={{
+                display: import.meta.env && import.meta.env.PROD ? 'none' : 'block',
+                position: 'absolute',
+                left: '-9999px',
+                width: 0,
+                height: 0,
+              }}
+            />
+          </BrowserRouter>
+        </CartProvider>
+      </AuthProvider>
+    </>
   );
 }
 

@@ -4,7 +4,7 @@ import { useAuth } from '../context/AuthContext';
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  const { login, loginWithGoogle, resolveMfaSignIn, startEnrollMfaPhone, finalizeEnrollMfaPhone, error, loading, currentUser } = useAuth();
+  const { login, loginWithGoogle, resolveMfaSignIn, startEnrollMfaPhone, finalizeEnrollMfaPhone, error, loading, currentUser, toE164 } = useAuth();
   // MFA aşaması state
   const [mfa, setMfa] = useState({
     required: false,
@@ -399,15 +399,6 @@ const LoginPage = () => {
           </div>
         </div>
 
-        {/* Back to Home */}
-        <div className="text-center mt-6">
-          <Link to="/" className="text-gray-600 hover:text-gray-800 font-medium flex items-center justify-center space-x-2 transition-colors">
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-            </svg>
-            <span>Ana Sayfaya Dön</span>
-          </Link>
-        </div>
         {/* Back to Home */}
         <div className="text-center mt-6">
           <Link to="/" className="text-gray-600 hover:text-gray-800 font-medium flex items-center justify-center space-x-2 transition-colors">

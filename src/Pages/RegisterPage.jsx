@@ -20,17 +20,8 @@ const RegisterPage = () => {
     finalizeEnrollMfaPhone,
     error,
     loading,
+    toE164,
   } = useAuth();
-
-  // Telefonu E.164 formatına çeviren yardımcı
-  const toE164 = (raw) => {
-    const d = (raw || "").replace(/\D/g, "");
-    if (!d) return "";
-    if (d.startsWith("90")) return `+${d}`;
-    if (d.startsWith("0")) return `+90${d.slice(1)}`;
-    if (d.startsWith("9")) return `+${d}`;
-    return `+90${d}`;
-  };
 
   // SMS Modal state
   const [sms, setSms] = useState({
@@ -45,6 +36,35 @@ const RegisterPage = () => {
   });
   // E-posta doğrulama modalı
   const [emailModal, setEmailModal] = useState({ show: false, email: "" });
+  // Kayıt submit fonksiyonu (örnek, gerçek kodda form submit ile entegre edin)
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    // ...validasyonlar...
+    try {
+      const result = await register(formData.email, formData.password, {
+        firstName: formData.firstName.trim(),
+        lastName: formData.lastName.trim(),
+        phone: formData.phone.trim(),
+        birthDate: formData.birthDate,
+        address: formData.address.trim(),
+        gender: formData.gender,
+        city: formData.city.trim(),
+        district: formData.district.trim(),
+        acceptMarketing: formData.acceptMarketing,
+      });
+      if (result.success) {
+        if (auth.currentUser && !auth.currentUser.emailVerified) {
+          await sendEmailVerification(auth.currentUser);
+        }
+        await signOut(auth);
+        setEmailModal({ show: true, email: formData.email });
+      }
+    } catch (err) {
+      // hata mesajı context'te yönetiliyor
+      console.error('Register error:', err);
+    }
+  };
+
 
   // Sayaç (resend) efekti
   useEffect(() => {

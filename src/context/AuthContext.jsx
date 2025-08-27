@@ -50,9 +50,28 @@ export function AuthProvider({ children }) {
   const redirectHandledRef = useRef(false);
   const recaptchaRef = useRef(null);
 
+  // E.164 phone format helper
+  const toE164 = (raw) => {
+    const d = (raw || "").replace(/\D/g, "");
+    if (!d) return "";
+    if (d.startsWith("90")) return `+${d}`;
+    if (d.startsWith("0")) return `+90${d.slice(1)}`;
+    if (d.startsWith("9")) return `+${d}`;
+    return `+90${d}`;
+  };
+
+  // Ensure recaptcha container exists and RecaptchaVerifier is initialized
   const ensureRecaptcha = React.useCallback(() => {
+    let container = document.getElementById('recaptcha-container');
+    if (!container) {
+      container = document.createElement('div');
+      container.id = 'recaptcha-container';
+      container.style.display = 'none';
+      document.body.appendChild(container);
+    }
     if (!recaptchaRef.current) {
       recaptchaRef.current = new RecaptchaVerifier(auth, 'recaptcha-container', { size: 'invisible' });
+      recaptchaRef.current.render();
     }
     return recaptchaRef.current;
   }, []);
@@ -314,6 +333,8 @@ export function AuthProvider({ children }) {
     unenrollMfaFactor,
     isAuthenticated: !!currentUser,
     clearError: () => setError(null),
+    toE164,
+    ensureRecaptcha,
   }), [currentUser, userProfile, loading, error]);
 
   return (
