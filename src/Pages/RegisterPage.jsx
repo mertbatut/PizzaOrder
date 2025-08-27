@@ -7,6 +7,7 @@ const getRecaptchaToken = async (action = 'REGISTER') => {
 // src/Pages/auth/RegisterPage.jsx
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+// Import relative modules from project root
 import { useAuth } from "../context/AuthContext";
 import { sendEmailVerification, signOut } from "firebase/auth";
 import { auth } from "../firebase/config";

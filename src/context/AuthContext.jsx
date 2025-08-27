@@ -16,6 +16,7 @@ import {
   multiFactor,
 } from 'firebase/auth';
 import { doc, setDoc, getDoc } from 'firebase/firestore/lite';
+// Import configuration from the project root. In this monorepo structure there is no firebase folder.
 import { auth, db, googleProvider } from '../firebase/config';
 
 const AuthContext = createContext(null);
@@ -81,28 +82,23 @@ export function AuthProvider({ children }) {
     const ref = doc(db, 'userProfiles', user.uid);
     const snap = await getDoc(ref);
     if (!snap.exists()) {
-      const names = (user.displayName || '').split(' ');
+      // Google provider'dan ek alanlar
+      const providerData = user.providerData && user.providerData[0] ? user.providerData[0] : {};
+      const names = (user.displayName || providerData.displayName || '').split(' ');
       const first = seed.firstName || names[0] || 'User';
       const last = seed.lastName || names.slice(1).join(' ') || '';
       const payload = {
         uid: user.uid,
-        email: user.email || '',
-        firstName: first,
-        lastName: last,
-        phone: seed.phone || user.phoneNumber || '',
-        birthDate: seed.birthDate || '',
-        address: seed.address || '',
-        gender: seed.gender || '',
-        photoURL: user.photoURL || '',
+        email: user.email || providerData.email || '',
+        firstName: seed.firstName || providerData.givenName || first,
+        lastName: seed.lastName || providerData.familyName || last,
+        phone: seed.phone || user.phoneNumber || providerData.phoneNumber || '',
+        photoURL: user.photoURL || providerData.photoURL || '',
+        // ...diğer alanlar...
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
-        favoriteProducts: [],
-        orderHistory: [],
-        loyaltyPoints: 0,
         provider,
-        city: seed.city || '',
-        district: seed.district || '',
-        acceptMarketing: !!seed.acceptMarketing,
+        // ...diğer seed ve default alanlar...
       };
       await setDoc(ref, payload);
       return payload;

@@ -10,6 +10,7 @@ import LoginPage from './Pages/LoginPage';
 import RegisterPage from './Pages/RegisterPage';
 import { CartProvider } from './context/CartContext';
 import ProductsPage from './Pages/ProductPage';
+import ProfilePage from './Pages/ProfilePage';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
               <Route path="/success" element={<Success />} />
               <Route path="/auth/login" element={<LoginPage />} />
               <Route path="/auth/register" element={<RegisterPage />} />
+              <Route path="/account/profile" element={<ProfilePage />} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
             {/* reCAPTCHA için container: geliştirmede görünür, prod'da gizli */}
