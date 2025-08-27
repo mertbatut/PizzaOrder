@@ -1,30 +1,38 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { CartProvider } from './context/CartContext';
+import Header from './components/Layout/Header';
+import { Navigate, Route, Routes, BrowserRouter } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
 import Home from './Pages/Home';
-import Success from './Pages/Success';
 import ProductSection from './Pages/ProductSection';
-import ProductsPage from './Pages/ProductPage';
 import ShoppingCart from './components/Cart/ShoppingCart';
+import Success from './Pages/Success';
+import LoginPage from './Pages/LoginPage';
+import RegisterPage from './Pages/RegisterPage';
+import { CartProvider } from './context/CartContext';
+import ProductsPage from './Pages/ProductPage';
 
 function App() {
   return (
-    <CartProvider>
-      <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          
-          {/* Dinamik ürün rotası - ID ile */}
-          <Route path="/product/:id" element={<ProductSection />} />
-          
-          {/* Varsayılan ürün rotası - ID olmadan */}
-          <Route path="/PizzaMenu" element={<ProductSection />} />
-          <Route path="/products" element={<ProductsPage />} />
-          <Route path="/checkout" element={<ShoppingCart />} />
-          <Route path="/success" element={<Success />} />
-        </Routes>
-      </Router>
-    </CartProvider>
+    <AuthProvider>
+      <CartProvider>
+        <BrowserRouter>
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/product/:id" element={<ProductSection />} />
+            <Route path="/PizzaMenu" element={<ProductSection />} />
+            <Route path="/products" element={<ProductsPage/>} />
+            <Route path="/checkout" element={<ShoppingCart />} />
+            <Route path="/success" element={<Success />} />
+            <Route path="/auth/login" element={<LoginPage />} />
+            <Route path="/auth/register" element={<RegisterPage />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+  {/* Invisible reCAPTCHA için container (MFA SMS kullanır) */}
+  <div id="recaptcha-container" style={{ display: 'none' }} />
+  </BrowserRouter>
+      </CartProvider>
+    </AuthProvider>
   );
 }
 
